@@ -1,17 +1,8 @@
 import { Router } from 'express'
-import { CreateUserController } from './modules/Users/controllers/CreateUserController';
+import { usersRoutes } from './modules/Users/routes/users.routes';
 
 const routes = Router();
 
-// Users
-routes.post('/create_user', new CreateUserController().handle);
-
-// News
-
-// Projects
-
-// Post Requests
-
-// RegistrationRequests
+routes.use('/users', usersRoutes);
 
 export { routes }

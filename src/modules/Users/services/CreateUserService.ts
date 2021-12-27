@@ -1,8 +1,9 @@
-import { getRepository } from "typeorm";
+import { inject, injectable } from 'tsyringe';
 import AppError from "../../../utils/AppError";
 import { User } from "../entities/User";
+import { IUsersRepository } from '../repositories/IUsersRepository';
 
-interface CreateUserRequest {
+interface IRequest {
   name: string;
   email: string;
   password: string;
@@ -10,17 +11,28 @@ interface CreateUserRequest {
   isAdmin: boolean;
 }
 
-export class CreateUserService {
-  async execute({name, email, password, RA, isAdmin }: CreateUserRequest): Promise<User | AppError> {
-    const userRepository = getRepository(User);
+@injectable()
+class CreateUserService {
+  constructor(
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository
+  ) { }
 
-    const userAlreadyExists = await userRepository.findOne({ where: { email } });
 
-    if(userAlreadyExists) {
-      return new AppError('User already exists', 400);
+  async execute({ name, email, password, RA, isAdmin }: IRequest): Promise<User> {
+    const userAlreadyExists = await this.usersRepository.findByEmail(email);
+
+    if (userAlreadyExists) {
+      throw new AppError('User already exists', 400);
     }
 
-    const newUser = userRepository.create({
+    const isParametersMissing = !name || !email || !password || !RA
+
+    if (isParametersMissing) {
+      throw new AppError('Missing parameters', 400);
+    }
+
+    const newUser = this.usersRepository.create({
       name,
       email,
       password,
@@ -28,8 +40,8 @@ export class CreateUserService {
       isAdmin
     });
 
-    await userRepository.save(newUser);
-
     return newUser;
   }
 }
+
+export { CreateUserService };

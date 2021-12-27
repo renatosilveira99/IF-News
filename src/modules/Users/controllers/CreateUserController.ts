@@ -1,22 +1,23 @@
 import { Request, Response } from 'express'
+import { container } from 'tsyringe';
 import AppError from '../../../utils/AppError';
 import { CreateUserService } from '../services/CreateUserService';
 
 export class CreateUserController {
   async handle(request: Request, response: Response) {
-    const { name, email, password, RA, isAdmin } = request.body
+    try {
+      const { name, email, password, RA, isAdmin = false } = request.body
 
-    const createUserService = new CreateUserService();
+      const createUserService = container.resolve(CreateUserService);
 
-    const result = await createUserService.execute({name, email, password, RA, isAdmin});
+      const createdUser = await createUserService.execute({ name, email, password, RA, isAdmin });
 
-    if(result instanceof AppError) {
-      return response.status(result.statusCode).json({
+      return response.status(201).json(createdUser)
+    } catch (error) {
+      return response.status(error.statusCode || 500).json({
         status: 'error',
-        message: result.message
-      })
+        message: error.message || 'Unexpected error.'
+      });
     }
-
-    return response.status(201).json(result)
   }
 }
