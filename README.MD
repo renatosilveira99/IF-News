@@ -3,6 +3,7 @@
   Reset de senha
   Criação de sessão com token
   Criptografia
+  CRUD
  
 
 #News
@@ -21,5 +22,3 @@ CRUD
 
 #Registration Requests
 CRUD
-
-Injeção de dependencia
