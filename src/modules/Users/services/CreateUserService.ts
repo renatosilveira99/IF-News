@@ -1,3 +1,4 @@
+import { hash } from 'bcryptjs';
 import { inject, injectable } from 'tsyringe';
 import AppError from "../../../utils/AppError";
 import { User } from "../entities/User";
@@ -32,10 +33,12 @@ export class CreateUserService {
       throw new AppError('Missing parameters', 400);
     }
 
+    const passwordHash = await hash(password, 8);
+
     const newUser = this.usersRepository.create({
       name,
       email,
-      password,
+      password: passwordHash,
       RA,
       isAdmin
     });

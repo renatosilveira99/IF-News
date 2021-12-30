@@ -16,6 +16,6 @@ export class UpdateUserController {
       RA,
     });
 
-    return response.status(201).json(plainToClass(User, createdUser))
+    return response.status(200).json(plainToClass(User, createdUser))
   }
 }

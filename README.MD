@@ -1,9 +1,7 @@
 #Users
-  Login
+  Upload de imagens 
   Reset de senha
-  Criação de sessão com token
-  CRUD
- 
+  Envio de email
 
 #News
 CRUD
@@ -12,11 +10,9 @@ CRUD
 CRUD
 
 #Geral
-Upload de imagens
-Testes unitários
 Testes de integração
 
-#Post Requestsz
+#Post Requests
 CRUD
 
 #Registration Requests

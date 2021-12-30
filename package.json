@@ -7,7 +7,8 @@
     "dev": "ts-node-dev --inspect --poll --transpile-only --ignore-watch node_modules --respawn src/server.ts",
     "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
     "lint": "eslint --fix --ext .ts",
-    "test": "jest"
+    "test": "jest",
+    "start": "node src/server.ts"
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.2",
