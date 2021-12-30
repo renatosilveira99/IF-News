@@ -2,9 +2,7 @@
   Login
   Reset de senha
   Criação de sessão com token
-  Criptografia
   CRUD
-  Coverage
  
 
 #News

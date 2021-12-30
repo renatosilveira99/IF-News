@@ -1,19 +1,25 @@
 import AppError from '../../../utils/AppError';
 import { UsersRepositoryInMemory } from '../repositories/in-memory/UsersRepositoryInMemory';
 import { CreateUserService } from '../services/CreateUserService';
+import { UpdateUserService } from '../services/UpdateUserService';
 
 let createUserService: CreateUserService;
+let updateUserService: UpdateUserService;
 let usersRepositoryInMemory: UsersRepositoryInMemory;
 
-describe('Create user', () => {
+describe('Update user', () => {
   beforeEach(() => {
     usersRepositoryInMemory = new UsersRepositoryInMemory();
     createUserService = new CreateUserService(
       usersRepositoryInMemory
     );
+    updateUserService = new UpdateUserService(
+      usersRepositoryInMemory
+    )
+
   });
 
-  it('should be able to create a new user', async () => {
+  it('should be able to update an user', async () => {
     const user = {
       name: 'fake-name',
       email: 'fake-email',
@@ -23,6 +29,12 @@ describe('Create user', () => {
     };
 
     await createUserService.execute(user);
+
+    await updateUserService.execute({
+      email: 'fake-email',
+      name: 'fake-name-updated',
+      RA: 'fake-RA-updated'
+    });
 
     const userCreated = await usersRepositoryInMemory.findByEmail(
       user.email
@@ -31,35 +43,13 @@ describe('Create user', () => {
     expect(userCreated).toHaveProperty('id');
   });
 
-  it('should not be able to create a new user with an existent email', async () => {
-    const user = {
-      name: 'fake-name',
-      email: 'fake-email',
-      password: 'fake-password',
-      RA: 'fake-RA',
-      isAdmin: false
-    };
-
-    await createUserService.execute(user);
-
+  it('should not be able to update a user with an non-existent email', async () => {
     await expect(
-      createUserService.execute(user)
-    ).rejects.toBeInstanceOf(AppError);
-  });
-
-  it('should not be able to create a new user with missing parameters', async () => {
-    const user = {
-      name: 'fake-name',
-      email: 'fake-email',
-      password: 'fake-password',
-      RA: 'fake-RA',
-      isAdmin: false
-    };
-
-    delete user.email;
-
-    await expect(
-      createUserService.execute(user)
+      updateUserService.execute({
+        email: 'fake-email',
+        name: 'fake-name-updated',
+        RA: 'fake-RA-updated'
+      })
     ).rejects.toBeInstanceOf(AppError);
   });
 });

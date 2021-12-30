@@ -1,5 +1,7 @@
+import { plainToInstance } from 'class-transformer';
 import { Request, Response } from 'express'
 import { container } from 'tsyringe';
+import { User } from '../entities/User';
 import { FindUserByEmailService } from '../services/FindUserByEmailService';
 
 export class FindUserByEmailController {
@@ -10,6 +12,6 @@ export class FindUserByEmailController {
 
     const user = await findUserByEmailService.execute({ email });
 
-    return response.status(200).json(user)
+    return response.status(200).json(plainToInstance(User, user));
   }
 }

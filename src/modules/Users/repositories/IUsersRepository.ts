@@ -9,13 +9,19 @@ interface ICreateUserDTO {
   isAdmin: boolean;
 }
 
+interface IUpdateUserDTO {
+  name: string;
+  email: string;
+  RA: string;
+}
+
 interface IUsersRepository {
   create({ name, email, password, RA, isAdmin }: ICreateUserDTO): Promise<User>;
   findByEmail(email: string): Promise<User>;
   findById(id: string): Promise<User>;
   findAll(): Promise<User[]>;
-  update(user: User): Promise<User>;
+  update({ name, email, RA }: IUpdateUserDTO): Promise<User>;
   delete(id: string): Promise<void>;
 }
 
-export { IUsersRepository, ICreateUserDTO };
+export { IUsersRepository, ICreateUserDTO, IUpdateUserDTO };

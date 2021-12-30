@@ -1,5 +1,5 @@
 import { User } from '../../entities/User';
-import { ICreateUserDTO, IUsersRepository } from '../IUsersRepository';
+import { ICreateUserDTO, IUpdateUserDTO, IUsersRepository } from '../IUsersRepository';
 
 export class UsersRepositoryInMemory implements IUsersRepository {
   users: User[] = [];
@@ -13,9 +13,13 @@ export class UsersRepositoryInMemory implements IUsersRepository {
     return this.users;
   }
 
-  async update(user: User): Promise<User> {
-    let userToUpdateIndex = this.users.findIndex(foundUser => foundUser.id === user.id);
-    this.users[userToUpdateIndex] = user;
+  async update({ name, email, RA }: IUpdateUserDTO): Promise<User> {
+    let userToUpdateIndex = this.users.findIndex(foundUser => foundUser.email === email);
+
+    this.users[userToUpdateIndex].name = name;
+    this.users[userToUpdateIndex].email = email;
+    this.users[userToUpdateIndex].RA = RA;
+
     return this.users[userToUpdateIndex];
   }
 

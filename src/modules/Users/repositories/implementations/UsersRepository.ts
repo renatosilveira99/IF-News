@@ -1,7 +1,7 @@
 import { EntityRepository, getRepository, Repository } from 'typeorm';
 
 import { User } from '../../entities/User';
-import { ICreateUserDTO, IUsersRepository } from '../IUsersRepository';
+import { ICreateUserDTO, IUpdateUserDTO, IUsersRepository } from '../IUsersRepository';
 
 @EntityRepository(User)
 export class UsersRepository implements IUsersRepository {
@@ -21,9 +21,12 @@ export class UsersRepository implements IUsersRepository {
     return users;
   }
 
-  async update(user: User): Promise<User> {
-    let userToUpdate = await this.repository.findOne({ id: user.id });
-    userToUpdate = user;
+  async update({ name, email, RA }: IUpdateUserDTO): Promise<User> {
+    const userToUpdate = await this.repository.findOne({ email });
+
+    userToUpdate.name = name;
+    userToUpdate.RA = RA;
+
     await this.repository.save(userToUpdate);
     return userToUpdate;
   }

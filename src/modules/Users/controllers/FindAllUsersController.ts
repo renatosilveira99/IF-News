@@ -1,5 +1,7 @@
+import { plainToClass, plainToInstance } from 'class-transformer';
 import { Request, Response } from 'express'
 import { container } from 'tsyringe';
+import { User } from '../entities/User';
 import { FindAllUsersService } from '../services/FindAllUsersService';
 
 export class FindAllUsersController {
@@ -8,6 +10,6 @@ export class FindAllUsersController {
 
     const users = await findAllUsersService.execute();
 
-    return response.status(200).json(users)
+    return response.status(200).json(plainToInstance(User, users));
   }
 }

@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import { container } from 'tsyringe';
 import { CreateUserService } from '../services/CreateUserService';
 import { hash } from 'bcryptjs';
-import { plainToClass } from 'class-transformer'
+import { plainToClass, plainToInstance } from 'class-transformer'
 import { User } from '../entities/User';
 
 export class CreateUserController {
@@ -21,6 +21,6 @@ export class CreateUserController {
       isAdmin
     });
 
-    return response.status(201).json(plainToClass(User, createdUser))
+    return response.status(201).json(plainToInstance(User, createdUser))
   }
 }
