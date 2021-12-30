@@ -23,12 +23,6 @@ export class UsersRepositoryInMemory implements IUsersRepository {
     return this.users[userToUpdateIndex];
   }
 
-  async delete(id: string): Promise<void> {
-    let userToUpdateIndex = this.users.findIndex(foundUser => foundUser.id === id);
-    this.users.splice(userToUpdateIndex, 1);
-  }
-
-
   async findByEmail(email: string): Promise<User> {
     const user = this.users.find(user => user.email === email);
     return user;
