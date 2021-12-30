@@ -1,22 +1,26 @@
 import { Request, Response } from 'express'
 import { container } from 'tsyringe';
 import { CreateUserService } from '../services/CreateUserService';
+import { hash } from 'bcryptjs';
+import { plainToClass } from 'class-transformer'
+import { User } from '../entities/User';
 
 export class CreateUserController {
   async handle(request: Request, response: Response) {
-    try {
-      const { name, email, password, RA, isAdmin = false } = request.body
+    const { name, email, password, RA, isAdmin = false } = request.body
 
-      const createUserService = container.resolve(CreateUserService);
+    const createUserService = container.resolve(CreateUserService);
 
-      const createdUser = await createUserService.execute({ name, email, password, RA, isAdmin });
+    const passwordHash = await hash(password, 8);
 
-      return response.status(201).json(createdUser)
-    } catch (error) {
-      return response.status(error.statusCode || 500).json({
-        status: 'error',
-        message: error.message || 'Unexpected error.'
-      });
-    }
+    const createdUser = await createUserService.execute({
+      name,
+      email,
+      password: passwordHash,
+      RA,
+      isAdmin
+    });
+
+    return response.status(201).json(plainToClass(User, createdUser))
   }
 }
