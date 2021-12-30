@@ -11,8 +11,30 @@ class UsersRepository implements IUsersRepository {
     this.repository = getRepository(User);
   }
 
+  async findById(id: string): Promise<User> {
+    const user = await this.repository.findOne({ id });
+    return user;
+  }
+
+  async findAll(): Promise<User[]> {
+    const users = await this.repository.find();
+    return users;
+  }
+
+  async update(user: User): Promise<User> {
+    let userToUpdate = await this.repository.findOne({ id: user.id });
+    userToUpdate = user;
+    await this.repository.save(userToUpdate);
+    return userToUpdate;
+  }
+
+  async delete(id: string): Promise<void> {
+    const userToDelete = await this.repository.findOne({ id });
+    await this.repository.remove(userToDelete);
+  }
+
   async findByEmail(email: string): Promise<User> {
-    const user = this.repository.findOne({ email });
+    const user = await this.repository.findOne({ email });
     return user;
   }
 

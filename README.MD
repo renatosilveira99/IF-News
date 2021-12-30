@@ -4,6 +4,7 @@
   Criação de sessão com token
   Criptografia
   CRUD
+  Coverage
  
 
 #News
@@ -17,7 +18,7 @@ Upload de imagens
 Testes unitários
 Testes de integração
 
-#Post Requests
+#Post Requestsz
 CRUD
 
 #Registration Requests
