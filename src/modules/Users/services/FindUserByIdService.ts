@@ -3,21 +3,25 @@ import AppError from "../../../utils/AppError";
 import { User } from "../entities/User";
 import { IUsersRepository } from '../repositories/IUsersRepository';
 
+interface IRequest {
+  id: string;
+}
+
 @injectable()
-export class FindAllUsersService {
+export class FindUserByIdService {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository
   ) { }
 
 
-  async execute(): Promise<User[]> {
-    const users = await this.usersRepository.findAll();
+  async execute({ id }: IRequest): Promise<User> {
+    const user = await this.usersRepository.findById(id)
 
-    if (users.length === 0) {
-      throw new AppError('No users registered on the database', 400);
+    if (!user) {
+      throw new AppError('User not found', 404);
     }
 
-    return users;
+    return user;
   }
 }
