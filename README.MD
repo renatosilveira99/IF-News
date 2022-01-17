@@ -8,12 +8,3 @@ CRUD
 
 #Projects
 CRUD
-
-#Geral
-Testes de integração
-
-#Post Requests
-CRUD
-
-#Registration Requests
-CRUD

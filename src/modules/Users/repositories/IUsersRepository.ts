@@ -13,6 +13,11 @@ interface IUpdateUserDTO {
   name: string;
   email: string;
   RA: string;
+  isAdmin: boolean;
+}
+interface IUpdateUserImageDTO {
+  id: string;
+  imageLink: string;
 }
 
 interface IUsersRepository {
@@ -20,7 +25,7 @@ interface IUsersRepository {
   findByEmail(email: string): Promise<User>;
   findById(id: string): Promise<User>;
   findAll(): Promise<User[]>;
-  update({ name, email, RA }: IUpdateUserDTO): Promise<User>;
+  update({ name, email, RA, isAdmin }: IUpdateUserDTO): Promise<User>;
 }
 
-export { IUsersRepository, ICreateUserDTO, IUpdateUserDTO };
+export { IUsersRepository, ICreateUserDTO, IUpdateUserDTO, IUpdateUserImageDTO };

@@ -6,16 +6,17 @@ import { User } from '../entities/User';
 
 export class UpdateUserController {
   async handle(request: Request, response: Response) {
-    const { name, email, RA } = request.body
+    const { name, email, RA, isAdmin } = request.body
 
-    const updateUserService = container.resolve(UpdateUserService); 2
+    const updateUserService = container.resolve(UpdateUserService);
 
-    const createdUser = await updateUserService.execute({
+    const updatedUser = await updateUserService.execute({
       name,
       email,
       RA,
+      isAdmin
     });
 
-    return response.status(200).json(plainToClass(User, createdUser))
+    return response.status(200).json(plainToClass(User, updatedUser))
   }
 }

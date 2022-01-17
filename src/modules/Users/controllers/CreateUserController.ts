@@ -10,8 +10,6 @@ export class CreateUserController {
 
     const createUserService = container.resolve(CreateUserService);
 
-
-
     const createdUser = await createUserService.execute({
       name,
       email,

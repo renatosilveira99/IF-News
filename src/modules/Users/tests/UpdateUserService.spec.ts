@@ -33,14 +33,18 @@ describe('Update user', () => {
     await updateUserService.execute({
       email: 'fake-email',
       name: 'fake-name-updated',
-      RA: 'fake-RA-updated'
+      RA: 'fake-RA-updated',
+      isAdmin: true
     });
 
     const userCreated = await usersRepositoryInMemory.findByEmail(
       user.email
     );
 
-    expect(userCreated).toHaveProperty('id');
+    expect(userCreated.email).toBe('fake-email');
+    expect(userCreated.name).toBe('fake-name-updated');
+    expect(userCreated.RA).toBe('fake-RA-updated');
+    expect(userCreated.isAdmin).toBe(true);
   });
 
   it('should not be able to update a user with an non-existent email', async () => {
@@ -48,7 +52,8 @@ describe('Update user', () => {
       updateUserService.execute({
         email: 'fake-email',
         name: 'fake-name-updated',
-        RA: 'fake-RA-updated'
+        RA: 'fake-RA-updated',
+        isAdmin: true
       })
     ).rejects.toBeInstanceOf(AppError);
   });

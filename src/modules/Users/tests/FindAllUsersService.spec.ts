@@ -35,10 +35,4 @@ describe('Find all users', () => {
     expect(allUsers).toBeInstanceOf(Array);
     expect(allUsers).not.toHaveLength(0);
   });
-
-  it('should throw an error if the database has no users', async () => {
-    await expect(
-      findAllUsersService.execute()
-    ).rejects.toBeInstanceOf(AppError);
-  });
 });

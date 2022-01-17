@@ -1,5 +1,4 @@
 import { inject, injectable } from 'tsyringe';
-import AppError from "../../../utils/AppError";
 import { User } from "../entities/User";
 import { IUsersRepository } from '../repositories/IUsersRepository';
 
@@ -13,10 +12,6 @@ export class FindAllUsersService {
 
   async execute(): Promise<User[]> {
     const users = await this.usersRepository.findAll();
-
-    if (users.length === 0) {
-      throw new AppError('No users registered on the database', 400);
-    }
 
     return users;
   }
