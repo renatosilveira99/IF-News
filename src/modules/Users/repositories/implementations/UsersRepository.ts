@@ -21,11 +21,12 @@ export class UsersRepository implements IUsersRepository {
     return users;
   }
 
-  async update({ name, email, RA }: IUpdateUserDTO): Promise<User> {
+  async update({ name, email, RA, isAdmin }: IUpdateUserDTO): Promise<User> {
     const userToUpdate = await this.repository.findOne({ email });
 
     userToUpdate.name = name;
     userToUpdate.RA = RA;
+    userToUpdate.isAdmin = isAdmin;
 
     await this.repository.save(userToUpdate);
     return userToUpdate;
@@ -48,6 +49,11 @@ export class UsersRepository implements IUsersRepository {
     await this.repository.save(user);
 
     return user
+  }
+
+  async save(user: User): Promise<User> {
+    await this.repository.save(user);
+    return user;
   }
 }
 

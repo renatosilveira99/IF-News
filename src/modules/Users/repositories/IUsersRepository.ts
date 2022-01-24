@@ -26,6 +26,7 @@ interface IUsersRepository {
   findById(id: string): Promise<User>;
   findAll(): Promise<User[]>;
   update({ name, email, RA, isAdmin }: IUpdateUserDTO): Promise<User>;
+  save(user: User): Promise<User>;
 }
 
 export { IUsersRepository, ICreateUserDTO, IUpdateUserDTO, IUpdateUserImageDTO };
