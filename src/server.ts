@@ -1,5 +1,7 @@
 import 'reflect-metadata'
 import 'dotenv/config';
+import cors from 'cors';
+import morgan from 'morgan';
 import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
 import swaggerUi from 'swagger-ui-express';
@@ -14,7 +16,11 @@ import AppError from './utils/AppError';
 
 const app = express();
 
+app.use(cors());
+
 app.use(express.json());
+
+app.use(morgan('dev'));
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 

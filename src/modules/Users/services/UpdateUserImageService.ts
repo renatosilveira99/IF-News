@@ -1,7 +1,7 @@
 import { User } from '../entities/User';
 import AppError from '../../../utils/AppError';
 import { IUsersRepository } from '../repositories/IUsersRepository';
-import { IStorageProvider } from '../../../shared/container/StorageProvider/models/IStorageProvider';
+import { IStorageProvider } from '../../../shared/container/StorageProvider/entities/IStorageProvider';
 import { inject, injectable } from 'tsyringe';
 
 interface IRequest {
@@ -32,9 +32,9 @@ export class UpdateUserImageService {
       await this.storageProvider.deleteFile(user.image);
     }
 
-    const filename = await this.storageProvider.saveFile(imageFileName);
+    const imageUrl = await this.storageProvider.saveFile(imageFileName);
 
-    user.image = filename;
+    user.image = imageUrl;
 
     await this.usersRepository.save(user);
 

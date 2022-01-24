@@ -3,8 +3,9 @@ import { container } from 'tsyringe';
 import { UsersRepository } from '../../modules/Users/repositories/implementations/UsersRepository';
 import { IUsersRepository } from '../../modules/Users/repositories/IUsersRepository';
 
-import { IStorageProvider } from './StorageProvider/models/IStorageProvider';
+import { IStorageProvider } from './StorageProvider/entities/IStorageProvider';
 import { DiskStorageProvider } from './StorageProvider/implementations/DiskStorageProvider';
+import { S3StorageProvider } from './StorageProvider/implementations/S3StorageProvider';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -13,5 +14,5 @@ container.registerSingleton<IUsersRepository>(
 
 container.registerSingleton<IStorageProvider>(
   'StorageProvider',
-  DiskStorageProvider,
+  S3StorageProvider,
 );
