@@ -8,3 +8,6 @@ CRUD
 
 #Projects
 CRUD
+FAER UPDATE DE PROJECTS
+
+Fazer validação do body de rotas com Joy

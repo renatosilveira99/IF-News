@@ -22,10 +22,8 @@ export class UpdateUserImageService {
   async execute({ userId, imageFileName }: IRequest): Promise<User> {
     const user = await this.usersRepository.findById(userId);
 
-    console.log(userId)
-
     if (!user) {
-      throw new AppError('Only authenticated users can change avatar.', 401);
+      throw new AppError('Apenas usuários autenticados podem substituir imagens', 401);
     }
 
     if (user.image) {

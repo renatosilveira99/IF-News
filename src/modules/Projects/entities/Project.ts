@@ -8,7 +8,7 @@ export class Project {
 
   @Column()
   title: string;
- 
+
   @Column()
   description: string;
 
@@ -19,7 +19,7 @@ export class Project {
   extraLink: string;
 
   @Column()
-  campus: string; 
+  campus: string;
 
   @Column()
   authorId: string;
@@ -37,7 +37,7 @@ export class Project {
   updatedAt: Date;
 
   constructor() {
-    if(!this.id) {
+    if (!this.id) {
       this.id = uuid();
     }
   }

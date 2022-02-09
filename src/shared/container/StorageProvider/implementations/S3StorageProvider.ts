@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import aws, { S3 } from 'aws-sdk';
+import AmazonS3URI from 'amazon-s3-uri';
 import mime from 'mime';
 import uploadConfig from '../../../../config/upload';
 import { IStorageProvider } from '../entities/IStorageProvider';
@@ -37,9 +38,11 @@ class S3StorageProvider implements IStorageProvider {
   }
 
   async deleteFile(file: string): Promise<void> {
+    const { key } = AmazonS3URI(file)
+
     await this.client.deleteObject({
       Bucket: process.env.BUCKET_NAME,
-      Key: file,
+      Key: key,
     }).promise();
   }
 }

@@ -46,20 +46,4 @@ describe('Create user', () => {
       createUserService.execute(user)
     ).rejects.toBeInstanceOf(AppError);
   });
-
-  it('should not be able to create a new user with missing parameters', async () => {
-    const user = {
-      name: 'fake-name',
-      email: 'fake-email',
-      password: 'fake-password',
-      RA: 'fake-RA',
-      isAdmin: false
-    };
-
-    delete user.email;
-
-    await expect(
-      createUserService.execute(user)
-    ).rejects.toBeInstanceOf(AppError);
-  });
 });

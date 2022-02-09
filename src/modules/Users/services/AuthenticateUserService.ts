@@ -24,13 +24,13 @@ export class AuthenticateUserService {
     const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
-      throw new AppError('User not found', 404);
+      throw new AppError('Usuário não encontrado', 400);
     }
 
     const isPasswordCorrect = await compare(password, user.password);
 
     if (!isPasswordCorrect) {
-      throw new AppError('Invalid password', 401);
+      throw new AppError('Senha incorreta', 401);
     }
 
     const classTransformedUser = plainToInstance(User, user);

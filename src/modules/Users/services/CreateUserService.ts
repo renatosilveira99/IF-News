@@ -24,13 +24,7 @@ export class CreateUserService {
     const userAlreadyExists = await this.usersRepository.findByEmail(email);
 
     if (userAlreadyExists) {
-      throw new AppError('User already exists', 400);
-    }
-
-    const isParametersMissing = !name || !email || !password || !RA
-
-    if (isParametersMissing) {
-      throw new AppError('Missing parameters', 400);
+      throw new AppError('Email já cadastrado', 400);
     }
 
     const passwordHash = await hash(password, 8);

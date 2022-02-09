@@ -22,7 +22,7 @@ export class UpdateUserService {
     const userExists = await this.usersRepository.findByEmail(email);
 
     if (!userExists) {
-      throw new AppError('User not found', 404);
+      throw new AppError('Usuário não encontrado', 400);
     }
 
     const updatedUser = this.usersRepository.update({
