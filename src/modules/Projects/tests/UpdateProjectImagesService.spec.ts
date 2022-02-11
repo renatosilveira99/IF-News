@@ -12,7 +12,7 @@ let updateProjectImagesService: UpdateProjectImagesService;
 let project = null
 let images = null
 
-describe('UpdateUserAvatar', () => {
+describe('Update Project Images', () => {
   beforeEach(() => {
     projectsRepositoryInMemory = new ProjectsRepositoryInMemory();
     storageProviderInMemory = new StorageProviderInMemory();
@@ -61,16 +61,16 @@ describe('UpdateUserAvatar', () => {
     expect(updatedProject.images).not.toBeNull();
   });
 
-  it('should not be able to update avatar from non existing user', async () => {
+  it('should not be able to update images from non existing project', async () => {
     await expect(
       updateProjectImagesService.execute({
-        id: 'non existing user',
+        id: 'non-existing-project-id',
         images
       }),
     ).rejects.toBeInstanceOf(AppError);
   });
 
-  it('should delete old avatar when updating new one', async () => {
+  it('should delete old images when updating new ones', async () => {
     const deleteFile = jest.spyOn(storageProviderInMemory, 'deleteFile');
 
     const createdProject = await createProjectService.execute(project);

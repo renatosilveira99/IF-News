@@ -7,7 +7,7 @@ import { ImageFile } from '../repositories/IProjectsRepository';
 
 export class UpdateProjectImagesController {
   async handle(request: Request, response: Response) {
-    const { id } = request.body
+    const { id } = request.params
     const images = request.files as ImageFile[]
 
     const updateProjectImagesService = container.resolve(UpdateProjectImagesService);

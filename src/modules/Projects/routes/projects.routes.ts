@@ -9,7 +9,9 @@ import { FindAllProjectsController } from '../controllers/FindAllProjectsControl
 import { FindProjectByIdController } from '../controllers/FindProjectByIdController';
 import { FindProjectsByAuthorIdController } from '../controllers/FindProjectsByAuthorIdController';
 import { FindProjectsByCampusController } from '../controllers/FindProjectsByCampusController';
+import { UpdateProjectController } from '../controllers/UpdateProjectController';
 import { UpdateProjectImagesController } from '../controllers/UpdateProjectImagesController';
+import { DeleteProjectController } from '../controllers/DeleteProjectController';
 
 const projectsRoutes = Router();
 
@@ -19,14 +21,20 @@ const findProjectByIdController = new FindProjectByIdController();
 const findProjectsByAuthorIdController = new FindProjectsByAuthorIdController();
 const findProjectsByCampusController = new FindProjectsByCampusController();
 const updateProjectImagesController = new UpdateProjectImagesController();
+const updateProjectController = new UpdateProjectController();
+const deleteProjectController = new DeleteProjectController();
 
 const upload = multer(uploadConfig);
 
-projectsRoutes.post('/create', ensureAuthenticated, upload.single('image'), createProjectController.handle);
-projectsRoutes.get('/findAll', ensureAuthenticated, findAllProjectsController.handle);
-projectsRoutes.get('/findById/:id', ensureAuthenticated, findProjectByIdController.handle);
-projectsRoutes.get('/findByAuthorId/:authorId', ensureAuthenticated, findProjectsByAuthorIdController.handle);
-projectsRoutes.get('/findByCampus', ensureAuthenticated, findProjectsByCampusController.handle);
-projectsRoutes.patch('/updateProjectImages', upload.array("images", 3), updateProjectImagesController.handle);
+projectsRoutes.use(ensureAuthenticated)
+
+projectsRoutes.post('/create', upload.single('image'), createProjectController.handle);
+projectsRoutes.get('/findAll', findAllProjectsController.handle);
+projectsRoutes.get('/findById/:id', findProjectByIdController.handle);
+projectsRoutes.get('/findByAuthorId/:authorId', findProjectsByAuthorIdController.handle);
+projectsRoutes.get('/findByCampus', findProjectsByCampusController.handle);
+projectsRoutes.patch('/updateImages/:id', upload.array("images", 3), updateProjectImagesController.handle);
+projectsRoutes.put('/update/:id', updateProjectController.handle);
+projectsRoutes.delete('/delete/:id', deleteProjectController.handle);
 
 export { projectsRoutes };

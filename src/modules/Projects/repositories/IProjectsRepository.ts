@@ -20,7 +20,7 @@ interface IUpdateProjectDTO {
   campus: string;
   authorId: string;
   coverImage: string;
-  images?: string[];
+  images?: string[] | string;
 }
 
 interface ImageFile {
@@ -34,7 +34,6 @@ interface ImageFile {
   size: number;
 }
 
-
 interface IProjectsRepository {
   create({ title, description, status, extraLink, campus, authorId, coverImage }: ICreateProjectDTO): Promise<Project>;
   findAll(): Promise<Project[]>;
@@ -43,6 +42,7 @@ interface IProjectsRepository {
   findByCampus(campus: string): Promise<Project[]>;
   update({ id, title, description, status, extraLink, campus, authorId, coverImage, images }: IUpdateProjectDTO): Promise<Project>;
   save(project: Project): Promise<Project>;
+  delete(id: string): Promise<void>;
 }
 
 export { IProjectsRepository, ICreateProjectDTO, IUpdateProjectDTO, ImageFile };

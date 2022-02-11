@@ -43,7 +43,6 @@ export class ProjectsRepository implements IProjectsRepository {
     campus,
     status,
     extraLink,
-    coverImage
   }: IUpdateProjectDTO): Promise<Project> {
     const projecToUpdate = await this.repository.findOne({ id });
 
@@ -53,7 +52,6 @@ export class ProjectsRepository implements IProjectsRepository {
     projecToUpdate.campus = campus;
     projecToUpdate.status = status;
     projecToUpdate.extraLink = extraLink;
-    projecToUpdate.coverImage = coverImage;
 
     await this.repository.save(projecToUpdate);
 
@@ -87,6 +85,10 @@ export class ProjectsRepository implements IProjectsRepository {
   async save(project: Project): Promise<Project> {
     await this.repository.save(project);
     return project;
+  }
+
+  async delete(id: string): Promise<void> {
+    await this.repository.delete(id);
   }
 }
 

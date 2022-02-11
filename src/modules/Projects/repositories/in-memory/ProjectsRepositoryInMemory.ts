@@ -13,7 +13,7 @@ export class ProjectsRepositoryInMemory implements IProjectsRepository {
     return this.projects;
   }
 
-  async update({ id, title, description, status, extraLink, campus, authorId, coverImage }: IUpdateProjectDTO): Promise<Project> {
+  async update({ id, title, description, status, extraLink, campus, authorId }: IUpdateProjectDTO): Promise<Project> {
     let projectToUpdateIndex = this.projects.findIndex(foundProject => foundProject.id === id);
 
     this.projects[projectToUpdateIndex].title = title;
@@ -22,7 +22,6 @@ export class ProjectsRepositoryInMemory implements IProjectsRepository {
     this.projects[projectToUpdateIndex].extraLink = extraLink;
     this.projects[projectToUpdateIndex].campus = campus;
     this.projects[projectToUpdateIndex].authorId = authorId;
-    this.projects[projectToUpdateIndex].coverImage = coverImage;
 
     return this.projects[projectToUpdateIndex];
   }
@@ -62,5 +61,13 @@ export class ProjectsRepositoryInMemory implements IProjectsRepository {
 
     this.projects[findIndex] = project;
     return project;
+  }
+
+  async delete(id: string): Promise<void> {
+    const findIndex = this.projects.findIndex(
+      (findProject) => findProject.id === id,
+    );
+
+    this.projects.splice(findIndex, 1);
   }
 }
