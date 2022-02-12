@@ -40,12 +40,12 @@ projectsRoutes.post('/likes/increment', incrementProjectLikesController.handle);
 projectsRoutes.post('/likes/decrement', decrementProjectLikesController.handle);
 projectsRoutes.post('/views/decrement', incrementProjectViewsController.handle);
 
-projectsRoutes.get('/findAll', findAllProjectsController.handle);
-projectsRoutes.get('/findById/:id', findProjectByIdController.handle);
-projectsRoutes.get('/findByAuthorId/:authorId', findProjectsByAuthorIdController.handle);
-projectsRoutes.get('/findByCampus', findProjectsByCampusController.handle);
+projectsRoutes.get('/find_all', findAllProjectsController.handle);
+projectsRoutes.get('/find_by_id/:id', findProjectByIdController.handle);
+projectsRoutes.get('/find_by_author_id/:authorId', findProjectsByAuthorIdController.handle);
+projectsRoutes.get('/find_by_campus', findProjectsByCampusController.handle);
 
-projectsRoutes.patch('/updateImages/:id', upload.array("images", 3), updateProjectImagesController.handle);
+projectsRoutes.patch('/update_images/:id', upload.array("images", 3), updateProjectImagesController.handle);
 projectsRoutes.put('/update/:id', updateProjectController.handle);
 
 projectsRoutes.delete('/delete/:id', deleteProjectController.handle);

@@ -1,5 +1,4 @@
 #Users
-  Upload de imagens 
   Reset de senha
   Envio de email
 
@@ -11,3 +10,4 @@ CRUD
 FAER UPDATE DE PROJECTS
 
 Fazer validação do body de rotas com Joy
+trocar todas as rotas pra snake_case

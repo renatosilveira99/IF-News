@@ -7,13 +7,16 @@ export class News {
   id: string;
 
   @Column()
-  name: string;
+  title: string;
 
   @Column()
   subtitle: string;
 
   @Column()
   description: string;
+
+  @Column()
+  status: string;
 
   @Column()
   extraLink: string;

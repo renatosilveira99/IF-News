@@ -25,6 +25,10 @@ export class CreateNews1639429850083 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'status',
+            type: 'varchar',
+          },
+          {
             name: 'extraLink',
             type: 'varchar',
             isNullable: true,

@@ -10,7 +10,6 @@ let createProjectService: CreateProjectService;
 let updateProjectService: UpdateProjectService;
 
 let project = null
-let images = null
 
 describe('Update Project', () => {
   beforeEach(() => {
@@ -37,17 +36,6 @@ describe('Update Project', () => {
       likes: 0,
       views: 0,
     }
-
-    images = [{
-      fieldname: 'images',
-      originalname: 'b3.jpg',
-      encoding: '7bit',
-      mimetype: 'image/jpeg',
-      destination: '/usr/app/tmp',
-      filename: 'f751be61e5b132441731-b3.jpg',
-      path: '/usr/app/tmp/f751be61e5b132441731-b3.jpg',
-      size: 11939
-    }]
   });
 
   it('should be able to update a project', async () => {
@@ -69,7 +57,7 @@ describe('Update Project', () => {
     expect(updatedProject.description).toBe('fake-description-2');
   });
 
-  it('should not be able to update avatar from non existing user', async () => {
+  it('should not be able to update non existing project', async () => {
     await expect(
       updateProjectService.execute({
         id: 'fake-id',
