@@ -2,14 +2,14 @@ import { StorageProviderInMemory } from '../../../shared/container/StorageProvid
 import AppError from '../../../utils/AppError';
 import { ProjectsRepositoryInMemory } from '../repositories/in-memory/ProjectsRepositoryInMemory';
 import { CreateProjectService } from '../services/CreateProjectService';
-import { FindProjectByAuthorIdService } from '../services/FindProjectsByAuthorIdService';
+import { IncrementProjectLikesService } from '../services/IncrementProjectLikesService'
 
 let createProjectService: CreateProjectService;
-let projectsRepositoryInMemory: ProjectsRepositoryInMemory;
-let findProjectByAuthorIdService: FindProjectByAuthorIdService;
 let storageProviderInMemory: StorageProviderInMemory;
+let projectsRepositoryInMemory: ProjectsRepositoryInMemory;
+let incrementProjectLikesService: IncrementProjectLikesService;
 
-describe('Find projects by authorId', () => {
+describe('Increment project likes', () => {
   beforeEach(() => {
     projectsRepositoryInMemory = new ProjectsRepositoryInMemory();
     storageProviderInMemory = new StorageProviderInMemory();
@@ -19,12 +19,12 @@ describe('Find projects by authorId', () => {
       storageProviderInMemory
     );
 
-    findProjectByAuthorIdService = new FindProjectByAuthorIdService(
-      projectsRepositoryInMemory
+    incrementProjectLikesService = new IncrementProjectLikesService(
+      projectsRepositoryInMemory,
     );
   });
 
-  it('should be able to find projects by authorId', async () => {
+  it('should be able to increment a project likes', async () => {
     const project = {
       title: 'fake-title',
       description: 'fake-description',
@@ -37,17 +37,20 @@ describe('Find projects by authorId', () => {
       views: 0,
     }
 
-    const createdProject = await createProjectService.execute(project)
+    const { id } = await createProjectService.execute(project);
 
-    const foundProjects = await findProjectByAuthorIdService.execute({ authorId: createdProject.authorId })
+    const projectCreated = await projectsRepositoryInMemory.findById(
+      id
+    );
 
-    expect(foundProjects).toBeInstanceOf(Array);
-    expect(foundProjects).toHaveLength(1);
+    await incrementProjectLikesService.execute({ id: projectCreated.id });
+
+    expect(projectCreated).toHaveProperty('likes', 1);
   });
 
-  it('should throw an error if projects are not found', async () => {
+  it('should not be able to increment a project likes if the project does not exist', async () => {
     await expect(
-      findProjectByAuthorIdService.execute({ authorId: 'fake-authorId' })
+      incrementProjectLikesService.execute({ id: 'invalid-id' })
     ).rejects.toBeInstanceOf(AppError);
-  });
+  })
 });

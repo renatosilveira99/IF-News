@@ -46,6 +46,16 @@ export class CreateProjects1639431961988 implements MigrationInterface {
             isNullable: true,
           },
           {
+            name: 'views',
+            type: 'int',
+            isNullable: true,
+          },
+          {
+            name: 'likes',
+            type: 'int',
+            isNullable: true,
+          },
+          {
             name: 'createdAt',
             type: 'timestamp',
             default: 'now()',

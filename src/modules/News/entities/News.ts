@@ -30,6 +30,12 @@ export class News {
   @Column()
   images: string;
 
+  @Column()
+  views: number;
+
+  @Column()
+  likes: number;
+
   @CreateDateColumn()
   createdAt: Date;
 

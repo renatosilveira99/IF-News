@@ -47,6 +47,16 @@ export class CreateNews1639429850083 implements MigrationInterface {
             isNullable: true,
           },
           {
+            name: 'views',
+            type: 'int',
+            isNullable: true,
+          },
+          {
+            name: 'likes',
+            type: 'int',
+            isNullable: true,
+          },
+          {
             name: 'createdAt',
             type: 'timestamp',
             default: 'now()',

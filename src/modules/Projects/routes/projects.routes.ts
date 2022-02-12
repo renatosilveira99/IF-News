@@ -12,6 +12,9 @@ import { FindProjectsByCampusController } from '../controllers/FindProjectsByCam
 import { UpdateProjectController } from '../controllers/UpdateProjectController';
 import { UpdateProjectImagesController } from '../controllers/UpdateProjectImagesController';
 import { DeleteProjectController } from '../controllers/DeleteProjectController';
+import { IncrementProjectLikesController } from '../controllers/IncrementProjectLikesController';
+import { IncrementProjectViewsController } from '../controllers/IncrementProjectViewsController';
+import { DecrementProjectLikesController } from '../controllers/DecrementProjectLikesController';
 
 const projectsRoutes = Router();
 
@@ -23,18 +26,32 @@ const findProjectsByCampusController = new FindProjectsByCampusController();
 const updateProjectImagesController = new UpdateProjectImagesController();
 const updateProjectController = new UpdateProjectController();
 const deleteProjectController = new DeleteProjectController();
+const incrementProjectLikesController = new IncrementProjectLikesController();
+const incrementProjectViewsController = new IncrementProjectViewsController();
+const decrementProjectLikesController = new DecrementProjectLikesController();
 
 const upload = multer(uploadConfig);
 
 projectsRoutes.use(ensureAuthenticated)
 
 projectsRoutes.post('/create', upload.single('image'), createProjectController.handle);
+
+projectsRoutes.post('/likes/increment', incrementProjectLikesController.handle);
+projectsRoutes.post('/likes/decrement', decrementProjectLikesController.handle);
+projectsRoutes.post('/views/decrement', incrementProjectViewsController.handle);
+
 projectsRoutes.get('/findAll', findAllProjectsController.handle);
 projectsRoutes.get('/findById/:id', findProjectByIdController.handle);
 projectsRoutes.get('/findByAuthorId/:authorId', findProjectsByAuthorIdController.handle);
 projectsRoutes.get('/findByCampus', findProjectsByCampusController.handle);
+
 projectsRoutes.patch('/updateImages/:id', upload.array("images", 3), updateProjectImagesController.handle);
 projectsRoutes.put('/update/:id', updateProjectController.handle);
+
 projectsRoutes.delete('/delete/:id', deleteProjectController.handle);
+
+
+
+
 
 export { projectsRoutes };

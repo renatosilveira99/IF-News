@@ -33,6 +33,8 @@ describe('Find project by id', () => {
       campus: 'fake-campus',
       authorId: 'fake-authorId',
       coverImage: 'fake-coverImage',
+      likes: 0,
+      views: 0,
     }
 
     const createdProject = await createProjectService.execute(project)

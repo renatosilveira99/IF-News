@@ -34,6 +34,8 @@ describe('Update Project', () => {
       campus: 'fake-campus',
       authorId: 'fake-authorId',
       coverImage: 'fake-coverImage',
+      likes: 0,
+      views: 0,
     }
 
     images = [{

@@ -36,7 +36,7 @@ export class ProjectsRepositoryInMemory implements IProjectsRepository {
     return project;
   }
 
-  async create({ title, description, status, extraLink, campus, authorId, coverImage }: ICreateProjectDTO): Promise<Project> {
+  async create({ title, description, status, extraLink, campus, authorId, coverImage, views, likes }: ICreateProjectDTO): Promise<Project> {
     const project = new Project();
 
     Object.assign(project, {
@@ -46,7 +46,9 @@ export class ProjectsRepositoryInMemory implements IProjectsRepository {
       extraLink,
       campus,
       authorId,
-      coverImage
+      coverImage,
+      views,
+      likes
     });
 
     this.projects.push(project);
@@ -69,5 +71,23 @@ export class ProjectsRepositoryInMemory implements IProjectsRepository {
     );
 
     this.projects.splice(findIndex, 1);
+  }
+
+  async incrementLikes(id: string): Promise<void> {
+    const project = this.projects.find(project => project.id === id);
+
+    project.likes += 1;
+  }
+
+  async decrementLikes(id: string): Promise<void> {
+    const project = this.projects.find(project => project.id === id);
+
+    project.likes -= 1;
+  }
+
+  async incrementViews(id: string): Promise<void> {
+    const project = this.projects.find(project => project.id === id);
+
+    project.views += 1;
   }
 }

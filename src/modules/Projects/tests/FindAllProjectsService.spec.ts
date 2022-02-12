@@ -31,6 +31,8 @@ describe('Find all projects', () => {
       campus: 'fake-campus',
       authorId: 'fake-authorId',
       coverImage: 'fake-coverImage',
+      likes: 0,
+      views: 0,
     }
 
     const project2 = {
@@ -41,6 +43,8 @@ describe('Find all projects', () => {
       campus: 'fake-campus',
       authorId: 'fake-authorId',
       coverImage: 'fake-coverImage',
+      likes: 0,
+      views: 0,
     }
 
     await createProjectService.execute(project1)

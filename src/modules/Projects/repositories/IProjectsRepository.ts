@@ -9,6 +9,8 @@ interface ICreateProjectDTO {
   campus: string;
   authorId: string;
   coverImage: string;
+  views: number;
+  likes: number;
 }
 
 interface IUpdateProjectDTO {
@@ -35,7 +37,7 @@ interface ImageFile {
 }
 
 interface IProjectsRepository {
-  create({ title, description, status, extraLink, campus, authorId, coverImage }: ICreateProjectDTO): Promise<Project>;
+  create({ title, description, status, extraLink, campus, authorId, coverImage, views, likes }: ICreateProjectDTO): Promise<Project>;
   findAll(): Promise<Project[]>;
   findById(id: string): Promise<Project>;
   findByAuthorId(authorId: string): Promise<Project[]>;
@@ -43,6 +45,9 @@ interface IProjectsRepository {
   update({ id, title, description, status, extraLink, campus, authorId, coverImage, images }: IUpdateProjectDTO): Promise<Project>;
   save(project: Project): Promise<Project>;
   delete(id: string): Promise<void>;
+  incrementLikes(id: string): Promise<void>;
+  incrementViews(id: string): Promise<void>;
+  decrementLikes(id: string): Promise<void>;
 }
 
 export { IProjectsRepository, ICreateProjectDTO, IUpdateProjectDTO, ImageFile };

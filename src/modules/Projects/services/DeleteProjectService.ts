@@ -29,9 +29,6 @@ export class DeleteProjectService {
     const { coverImage } = project;
     const { images } = project;
 
-    console.log(coverImage);
-    console.log(images);
-
     if (coverImage) {
       await this.storageProvider.deleteFile(coverImage);
     }

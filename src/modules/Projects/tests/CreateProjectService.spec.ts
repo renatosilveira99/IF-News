@@ -25,6 +25,8 @@ describe('Create project', () => {
       campus: 'fake-campus',
       authorId: 'fake-authorId',
       coverImage: 'fake-coverImage',
+      likes: 0,
+      views: 0,
     }
 
     const { id } = await createProjectService.execute(project);

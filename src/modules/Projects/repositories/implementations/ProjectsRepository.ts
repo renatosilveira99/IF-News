@@ -65,7 +65,9 @@ export class ProjectsRepository implements IProjectsRepository {
     campus,
     status,
     extraLink,
-    coverImage
+    coverImage,
+    views,
+    likes
   }: ICreateProjectDTO): Promise<Project> {
     const project = this.repository.create({
       title,
@@ -74,7 +76,9 @@ export class ProjectsRepository implements IProjectsRepository {
       campus,
       status,
       extraLink,
-      coverImage
+      coverImage,
+      views,
+      likes
     });
 
     await this.repository.save(project);
@@ -89,6 +93,30 @@ export class ProjectsRepository implements IProjectsRepository {
 
   async delete(id: string): Promise<void> {
     await this.repository.delete(id);
+  }
+
+  async incrementLikes(id: string): Promise<void> {
+    const project = await this.repository.findOne({ id });
+
+    project.likes += 1;
+
+    await this.repository.save(project);
+  }
+
+  async incrementViews(id: string): Promise<void> {
+    const project = await this.repository.findOne({ id });
+
+    project.views += 1;
+
+    await this.repository.save(project);
+  }
+
+  async decrementLikes(id: string): Promise<void> {
+    const project = await this.repository.findOne({ id });
+
+    project.likes -= 1;
+
+    await this.repository.save(project);
   }
 }
 

@@ -9,8 +9,12 @@ export class StorageProviderInMemory implements IStorageProvider {
   }
 
   public async deleteFile(file: string): Promise<void> {
-    this.storage.findIndex(
+    console.log('Deleting file: ', this.storage);
+
+    const findIndex = this.storage.findIndex(
       (storageFile) => storageFile === file,
     );
+
+    this.storage.splice(findIndex, 1);
   }
 }

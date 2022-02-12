@@ -6,7 +6,7 @@ import { Project } from '../entities/Project';
 
 export class CreateProjectController {
   async handle(request: Request, response: Response) {
-    const { campus, description, status, title, extraLink } = request.body
+    const { campus, description, status, title, extraLink, views, likes } = request.body
     const coverImage = request.file.filename
     const authorId = request.user.id
 
@@ -19,7 +19,9 @@ export class CreateProjectController {
       status,
       title,
       extraLink,
-      coverImage
+      coverImage,
+      views,
+      likes
     });
 
     return response.status(201).json(plainToInstance(Project, createdProject))
