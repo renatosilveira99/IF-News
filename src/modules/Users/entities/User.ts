@@ -20,10 +20,10 @@ export class User {
   @Exclude()
   password: string;
 
-  @Column()
+  @Column('text', { nullable: true })
   RA: string;
 
-  @Column()
+  @Column('text', { nullable: true })
   image: string;
 
   @CreateDateColumn({ name: 'created_at' })
