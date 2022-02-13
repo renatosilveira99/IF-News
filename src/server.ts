@@ -38,6 +38,10 @@ app.use(
   }
 );
 
+app.get('/', (request: Request, response: Response) => {
+  return response.json({ message: 'IF News Server - online' });
+})
+
 app.listen(3333, () => {
   console.log('Server is running on port 3333');
 }); 
