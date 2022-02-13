@@ -15,7 +15,7 @@ export class Project {
   @Column()
   status: string;
 
-  @Column()
+  @Column('text', { nullable: true })
   extraLink: string;
 
   @Column()
@@ -27,13 +27,13 @@ export class Project {
   @Column()
   coverImage: string;
 
-  @Column()
+  @Column('text', { nullable: true })
   images: string;
 
-  @Column()
+  @Column('numeric', { nullable: true })
   views: number;
 
-  @Column()
+  @Column('numeric', { nullable: true })
   likes: number;
 
   @CreateDateColumn()
