@@ -4,9 +4,6 @@ module.exports = {
   synchronize: true,
   dropSchema: false,
   logging: true,
-  ssl: {
-    ca: process.env.SSL_CERT,
-  },
   entities: ["dist/src/modules/**/entities/*.js"],
   migrations: ["dist/src/database/migrations/**/*.js"],
   cli: {
@@ -14,9 +11,4 @@ module.exports = {
     migrationsDir: "dist/src/database/migrations",
   },
   ssl: true,
-  extra: {
-    ssl: {
-      rejectUnauthorized: false
-    }
-  }
 };
