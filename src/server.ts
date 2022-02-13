@@ -1,5 +1,5 @@
-require('reflect-metadata')
-require('dotenv').config()
+import 'reflect-metadata'
+import 'dotenv/config';
 import cors from 'cors';
 import morgan from 'morgan';
 import express, { Request, Response, NextFunction } from 'express';
