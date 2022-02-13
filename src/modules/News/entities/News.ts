@@ -33,10 +33,10 @@ export class News {
   @Column('text', { nullable: true })
   images: string;
 
-  @Column('number', { nullable: true })
+  @Column('numeric', { nullable: true })
   views: number;
 
-  @Column('number', { nullable: true })
+  @Column('numeric', { nullable: true })
   likes: number;
 
   @CreateDateColumn()
