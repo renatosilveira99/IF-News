@@ -18,7 +18,7 @@ export class News {
   @Column()
   status: string;
 
-  @Column()
+  @Column('text', { nullable: true })
   extraLink: string;
 
   @Column()
@@ -30,13 +30,13 @@ export class News {
   @Column()
   coverImage: string;
 
-  @Column()
+  @Column('text', { nullable: true })
   images: string;
 
-  @Column()
+  @Column('number', { nullable: true })
   views: number;
 
-  @Column()
+  @Column('number', { nullable: true })
   likes: number;
 
   @CreateDateColumn()
