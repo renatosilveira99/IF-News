@@ -6,6 +6,9 @@ import { IUsersRepository } from '../../modules/Users/repositories/IUsersReposit
 import { ProjectsRepository } from '../../modules/Projects/repositories/implementations/ProjectsRepository';
 import { IProjectsRepository } from '../../modules/Projects/repositories/IProjectsRepository';
 
+import { NewsRepository } from '../../modules/News/repositories/implementations/NewsRepository';
+import { INewsRepository } from '../../modules/News/repositories/INewsRepository';
+
 import { IStorageProvider } from './StorageProvider/entities/IStorageProvider';
 import { DiskStorageProvider } from './StorageProvider/implementations/DiskStorageProvider';
 import { S3StorageProvider } from './StorageProvider/implementations/S3StorageProvider';
@@ -20,6 +23,11 @@ container.registerSingleton<IUsersRepository>(
 container.registerSingleton<IProjectsRepository>(
   'ProjectsRepository',
   ProjectsRepository
+);
+
+container.registerSingleton<INewsRepository>(
+  'NewsRepository',
+  NewsRepository
 );
 
 container.registerSingleton<IStorageProvider>(
