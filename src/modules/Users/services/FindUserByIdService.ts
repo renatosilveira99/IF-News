@@ -16,11 +16,7 @@ export class FindUserByIdService {
 
 
   async execute({ id }: IRequest): Promise<User> {
-    const user = await this.usersRepository.findById(id)
-
-    if (!user) {
-      throw new AppError('Usuário não encontrado', 400);
-    }
+    const user = await this.usersRepository.findById(id);
 
     return user;
   }
