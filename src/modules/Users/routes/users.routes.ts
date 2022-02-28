@@ -25,7 +25,7 @@ const updateUserImageController = new UpdateUserImageController();
 
 const upload = multer(uploadConfig);
 
-usersRoutes.post('/create', ensureAuthenticated, createUserController.handle);
+usersRoutes.post('/create', createUserController.handle);
 usersRoutes.get('/find_all', findAllUsersController.handle);
 usersRoutes.get('/find_by_id/:id', findUserByIdController.handle);
 usersRoutes.get('/find_by_email/:email', findUserByEmailController.handle);
