@@ -14,6 +14,7 @@ interface IUpdateUserDTO {
   email: string;
   RA: string;
   isAdmin: boolean;
+  image: string;
 }
 interface IUpdateUserImageDTO {
   id: string;
@@ -25,7 +26,7 @@ interface IUsersRepository {
   findByEmail(email: string): Promise<User>;
   findById(id: string): Promise<User>;
   findAll(): Promise<User[]>;
-  update({ name, email, RA, isAdmin }: IUpdateUserDTO): Promise<User>;
+  update({ name, email, RA, isAdmin, image }: IUpdateUserDTO): Promise<User>;
   save(user: User): Promise<User>;
 }
 

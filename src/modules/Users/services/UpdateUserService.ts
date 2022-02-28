@@ -8,6 +8,7 @@ interface IRequest {
   email: string;
   RA: string;
   isAdmin: boolean;
+  image: string;
 }
 
 @injectable()
@@ -18,7 +19,7 @@ export class UpdateUserService {
   ) { }
 
 
-  async execute({ name, email, RA, isAdmin }: IRequest): Promise<User> {
+  async execute({ name, email, RA, isAdmin, image }: IRequest): Promise<User> {
     const userExists = await this.usersRepository.findByEmail(email);
 
     if (!userExists) {
@@ -29,7 +30,8 @@ export class UpdateUserService {
       name,
       email,
       RA,
-      isAdmin
+      isAdmin,
+      image
     });
 
     return updatedUser;

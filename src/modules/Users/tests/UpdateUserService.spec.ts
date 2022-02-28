@@ -34,7 +34,8 @@ describe('Update user', () => {
       email: 'fake-email',
       name: 'fake-name-updated',
       RA: 'fake-RA-updated',
-      isAdmin: true
+      isAdmin: true,
+      image: 'fake-image-updated'
     });
 
     const userCreated = await usersRepositoryInMemory.findByEmail(
@@ -53,7 +54,8 @@ describe('Update user', () => {
         email: 'fake-email',
         name: 'fake-name-updated',
         RA: 'fake-RA-updated',
-        isAdmin: true
+        isAdmin: true,
+        image: 'fake-image'
       })
     ).rejects.toBeInstanceOf(AppError);
   });

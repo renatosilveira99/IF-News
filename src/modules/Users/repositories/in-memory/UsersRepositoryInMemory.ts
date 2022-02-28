@@ -13,13 +13,14 @@ export class UsersRepositoryInMemory implements IUsersRepository {
     return this.users;
   }
 
-  async update({ name, email, RA, isAdmin }: IUpdateUserDTO): Promise<User> {
+  async update({ name, email, RA, isAdmin, image }: IUpdateUserDTO): Promise<User> {
     let userToUpdateIndex = this.users.findIndex(foundUser => foundUser.email === email);
 
     this.users[userToUpdateIndex].name = name;
     this.users[userToUpdateIndex].email = email;
     this.users[userToUpdateIndex].RA = RA;
     this.users[userToUpdateIndex].isAdmin = isAdmin;
+    this.users[userToUpdateIndex].image = image;
 
     return this.users[userToUpdateIndex];
   }

@@ -6,7 +6,7 @@ import { User } from '../entities/User';
 
 export class UpdateUserController {
   async handle(request: Request, response: Response) {
-    const { name, email, RA, isAdmin } = request.body
+    const { name, email, RA, isAdmin, image } = request.body
 
     const updateUserService = container.resolve(UpdateUserService);
 
@@ -14,7 +14,8 @@ export class UpdateUserController {
       name,
       email,
       RA,
-      isAdmin
+      isAdmin,
+      image
     });
 
     return response.status(200).json(plainToClass(User, updatedUser))
