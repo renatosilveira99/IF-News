@@ -16,11 +16,7 @@ export class FindUserByEmailService {
 
 
   async execute({ email }: IRequest): Promise<User> {
-    const user = await this.usersRepository.findByEmail(email)
-
-    if (!user) {
-      throw new AppError('Usuário não encontrado', 400);
-    }
+    const user = await this.usersRepository.findByEmail(email);
 
     return user;
   }
