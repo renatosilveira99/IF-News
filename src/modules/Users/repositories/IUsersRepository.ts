@@ -7,6 +7,7 @@ interface ICreateUserDTO {
   password: string;
   RA: string;
   isAdmin: boolean;
+  image?: string;
 }
 
 interface IUpdateUserDTO {
@@ -22,7 +23,7 @@ interface IUpdateUserImageDTO {
 }
 
 interface IUsersRepository {
-  create({ name, email, password, RA, isAdmin }: ICreateUserDTO): Promise<User>;
+  create({ name, email, password, RA, isAdmin, image }: ICreateUserDTO): Promise<User>;
   findByEmail(email: string): Promise<User>;
   findById(id: string): Promise<User>;
   findAll(): Promise<User[]>;

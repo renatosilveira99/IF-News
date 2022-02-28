@@ -10,6 +10,7 @@ interface IRequest {
   password: string;
   RA: string;
   isAdmin: boolean;
+  image?: string;
 }
 
 @injectable()
@@ -20,7 +21,7 @@ export class CreateUserService {
   ) { }
 
 
-  async execute({ name, email, password, RA, isAdmin }: IRequest): Promise<User> {
+  async execute({ name, email, password, RA, isAdmin, image }: IRequest): Promise<User> {
     const userAlreadyExists = await this.usersRepository.findByEmail(email);
 
     if (userAlreadyExists) {
@@ -34,7 +35,8 @@ export class CreateUserService {
       email,
       password: passwordHash,
       RA,
-      isAdmin
+      isAdmin,
+      image
     });
 
     return newUser;

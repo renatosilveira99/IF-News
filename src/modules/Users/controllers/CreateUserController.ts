@@ -6,7 +6,7 @@ import { User } from '../entities/User';
 
 export class CreateUserController {
   async handle(request: Request, response: Response) {
-    const { name, email, password, RA, isAdmin = false } = request.body
+    const { name, email, password, RA, isAdmin = false, image } = request.body
 
     const createUserService = container.resolve(CreateUserService);
 
@@ -15,7 +15,8 @@ export class CreateUserController {
       email,
       password,
       RA,
-      isAdmin
+      isAdmin,
+      image
     });
 
     return response.status(201).json(plainToInstance(User, createdUser))

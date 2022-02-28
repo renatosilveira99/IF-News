@@ -19,7 +19,8 @@ describe('Create user', () => {
       email: 'fake-email',
       password: 'fake-password',
       RA: 'fake-RA',
-      isAdmin: false
+      isAdmin: false,
+      image: 'fake-image'
     };
 
     await createUserService.execute(user);
@@ -37,7 +38,8 @@ describe('Create user', () => {
       email: 'fake-email',
       password: 'fake-password',
       RA: 'fake-RA',
-      isAdmin: false
+      isAdmin: false,
+      image: 'fake-image'
     };
 
     await createUserService.execute(user);

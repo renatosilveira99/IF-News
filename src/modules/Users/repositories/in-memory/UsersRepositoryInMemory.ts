@@ -30,7 +30,7 @@ export class UsersRepositoryInMemory implements IUsersRepository {
     return user;
   }
 
-  async create({ name, email, password, RA, isAdmin }: ICreateUserDTO): Promise<User> {
+  async create({ name, email, password, RA, isAdmin, image }: ICreateUserDTO): Promise<User> {
     const user = new User();
 
     Object.assign(user, {
@@ -38,7 +38,8 @@ export class UsersRepositoryInMemory implements IUsersRepository {
       email,
       password,
       RA,
-      isAdmin
+      isAdmin,
+      image
     });
 
     this.users.push(user);
