@@ -16,7 +16,9 @@ import AppError from './utils/AppError';
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: '*',
+}));
 
 app.use(express.json());
 
