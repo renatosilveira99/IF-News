@@ -38,7 +38,7 @@ newsRoutes.post('/create', upload.single('image'), createNewsController.handle);
 
 newsRoutes.post('/likes/increment', incrementNewsLikesController.handle);
 newsRoutes.post('/likes/decrement', decrementNewsLikesController.handle);
-newsRoutes.post('/views/decrement', incrementNewsViewsController.handle);
+newsRoutes.post('/views/increment', incrementNewsViewsController.handle);
 
 newsRoutes.get('/find_all', findAllNewsController.handle);
 newsRoutes.get('/find_by_id/:id', findNewsByIdController.handle);

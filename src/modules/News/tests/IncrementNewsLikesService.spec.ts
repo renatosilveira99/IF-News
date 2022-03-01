@@ -41,13 +41,15 @@ describe('Increment news likes', () => {
 
     const { id } = await createNewsService.execute(news);
 
+    await incrementNewsLikesService.execute({ id });
+
+    await incrementNewsLikesService.execute({ id });
+
     const newsCreated = await newsRepositoryInMemory.findById(
       id
     );
 
-    await incrementNewsLikesService.execute({ id: newsCreated.id });
-
-    expect(newsCreated).toHaveProperty('likes', 1);
+    expect(newsCreated).toHaveProperty('likes', 2);
   });
 
   it('should not be able to increment news likes if the news does not exist', async () => {

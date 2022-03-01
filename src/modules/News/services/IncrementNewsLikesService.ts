@@ -14,12 +14,6 @@ export class IncrementNewsLikesService {
   ) { }
 
   async execute({ id }: IRequest): Promise<void> {
-    const news = await this.newsRepository.findById(id);
-
-    if (!news) {
-      throw new AppError('Notícia não encontrada', 400);
-    }
-
     const updatedNews = this.newsRepository.incrementLikes(id);
 
     return updatedNews;

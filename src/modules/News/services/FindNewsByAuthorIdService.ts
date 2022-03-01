@@ -18,10 +18,6 @@ export class FindNewsByAuthorIdService {
   async execute({ authorId }: IRequest): Promise<News[]> {
     const news = await this.newsRepository.findByAuthorId(authorId)
 
-    if (news.length === 0) {
-      throw new AppError('Notícia não encontrada', 400);
-    }
-
     return news;
   }
 }

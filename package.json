@@ -12,7 +12,7 @@
     "dev": "ts-node-dev --inspect --poll --transpile-only --ignore-watch node_modules --respawn src/server.ts",
     "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
     "lint": "eslint --fix --ext .ts",
-    "test": "jest"
+    "test": "jest src/modules/News/tests/IncrementNewsLikesService.spec.ts"
   },
   "dependencies": {
     "amazon-s3-uri": "^0.1.1",
