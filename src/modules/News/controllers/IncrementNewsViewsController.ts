@@ -10,7 +10,7 @@ export class IncrementNewsViewsController {
 
     const incrementNewsViewsService = container.resolve(IncrementNewsViewsService);
 
-    const updatedNews = await incrementNewsViewsService.execute(id);
+    const updatedNews = await incrementNewsViewsService.execute({ id });
 
     return response.status(200).json(plainToInstance(News, updatedNews))
   }

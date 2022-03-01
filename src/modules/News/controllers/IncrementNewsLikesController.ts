@@ -10,7 +10,7 @@ export class IncrementNewsLikesController {
 
     const incrementNewsLikesService = container.resolve(IncrementNewsLikesService);
 
-    const updatedNews = await incrementNewsLikesService.execute(id);
+    const updatedNews = await incrementNewsLikesService.execute({ id });
 
     return response.status(200).json(plainToInstance(News, updatedNews))
   }
