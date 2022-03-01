@@ -102,9 +102,9 @@ export class NewsRepository implements INewsRepository {
   async incrementLikes(id: string): Promise<News> {
     const news = await this.repository.findOne({ id });
 
-    const likes = news.likes++;
+    news.likes = Number(news.likes) + 1;
 
-    await this.repository.save({ ...news, likes });
+    await this.repository.save(news);
 
     return news;
   }
@@ -121,6 +121,8 @@ export class NewsRepository implements INewsRepository {
 
   async decrementLikes(id: string): Promise<News> {
     const news = await this.repository.findOne({ id });
+
+    news.likes = Number(news.likes) - 1;
 
     await this.repository.save(news);
 
