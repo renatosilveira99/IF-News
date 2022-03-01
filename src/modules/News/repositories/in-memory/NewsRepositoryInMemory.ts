@@ -75,21 +75,27 @@ export class NewsRepositoryInMemory implements INewsRepository {
     this.news.splice(findIndex, 1);
   }
 
-  async incrementLikes(id: string): Promise<void> {
+  async incrementLikes(id: string): Promise<News> {
     const news = this.news.find(news => news.id === id);
 
     news.likes += 1;
+
+    return news;
   }
 
-  async decrementLikes(id: string): Promise<void> {
+  async decrementLikes(id: string): Promise<News> {
     const news = this.news.find(news => news.id === id);
 
     news.likes -= 1;
+
+    return news;
   }
 
-  async incrementViews(id: string): Promise<void> {
+  async incrementViews(id: string): Promise<News> {
     const news = this.news.find(news => news.id === id);
 
     news.views += 1;
+
+    return news;
   }
 }

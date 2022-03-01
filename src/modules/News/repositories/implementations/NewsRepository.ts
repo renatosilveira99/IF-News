@@ -99,26 +99,32 @@ export class NewsRepository implements INewsRepository {
     await this.repository.delete(id);
   }
 
-  async incrementLikes(id: string): Promise<void> {
+  async incrementLikes(id: string): Promise<News> {
     const news = await this.repository.findOne({ id });
 
     const likes = news.likes++;
 
     await this.repository.save({ ...news, likes });
+
+    return news;
   }
 
-  async incrementViews(id: string): Promise<void> {
+  async incrementViews(id: string): Promise<News> {
     const news = await this.repository.findOne({ id });
 
     news.views = Number(news.views + 1);
 
     await this.repository.save(news);
+
+    return news;
   }
 
-  async decrementLikes(id: string): Promise<void> {
+  async decrementLikes(id: string): Promise<News> {
     const news = await this.repository.findOne({ id });
 
     await this.repository.save(news);
+
+    return news;
   }
 }
 

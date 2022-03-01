@@ -47,9 +47,9 @@ interface INewsRepository {
   update({ id, title, subtitle, description, status, extraLink, campus, authorId, coverImage, images }: IUpdateNewsDTO): Promise<News>;
   save(news: News): Promise<News>;
   delete(id: string): Promise<void>;
-  incrementLikes(id: string): Promise<void>;
-  incrementViews(id: string): Promise<void>;
-  decrementLikes(id: string): Promise<void>;
+  incrementLikes(id: string): Promise<News>;
+  incrementViews(id: string): Promise<News>;
+  decrementLikes(id: string): Promise<News>;
 }
 
 export { INewsRepository, ICreateNewsDTO, IUpdateNewsDTO, ImageFile };
