@@ -112,7 +112,7 @@ export class NewsRepository implements INewsRepository {
   async incrementViews(id: string): Promise<News> {
     const news = await this.repository.findOne({ id });
 
-    news.views = Number(news.views + 1);
+    news.views = Number(news.views) + 1;
 
     await this.repository.save(news);
 
