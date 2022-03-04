@@ -1,7 +1,5 @@
 import { Request, Response } from 'express'
 import { container } from 'tsyringe';
-import { plainToInstance } from 'class-transformer'
-import { News } from '../entities/News';
 import { FindNewsByIdService } from '../services/FindNewsByIdService';
 
 export class FindNewsByIdController {
@@ -10,8 +8,8 @@ export class FindNewsByIdController {
 
     const findNewsByIdService = container.resolve(FindNewsByIdService);
 
-    const news = await findNewsByIdService.execute({ id });
+    const { news, author } = await findNewsByIdService.execute({ id });
 
-    return response.status(200).json(plainToInstance(News, news));
+    return response.status(200).json({ news, author });
   }
 }

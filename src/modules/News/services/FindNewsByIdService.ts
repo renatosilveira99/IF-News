@@ -1,6 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import AppError from "../../../utils/AppError";
-import { News } from "../entities/News";
+import { IUsersRepository } from '../../Users/repositories/IUsersRepository';
 import { INewsRepository } from '../repositories/INewsRepository';
 
 interface IRequest {
@@ -11,17 +10,21 @@ interface IRequest {
 export class FindNewsByIdService {
   constructor(
     @inject('NewsRepository')
-    private newsRepository: INewsRepository
+    private newsRepository: INewsRepository,
+
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository
   ) { }
 
 
-  async execute({ id }: IRequest): Promise<News> {
+  async execute({ id }: IRequest): Promise<any> {
     const news = await this.newsRepository.findById(id)
 
-    if (!news) {
-      throw new AppError('Notícia não encontrada', 400);
-    }
+    const author = await this.usersRepository.findById(news.authorId);
 
-    return news;
+    return {
+      news,
+      author
+    }
   }
 }

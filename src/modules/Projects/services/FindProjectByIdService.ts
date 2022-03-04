@@ -1,6 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import AppError from "../../../utils/AppError";
-import { Project } from "../entities/Project";
+import { IUsersRepository } from '../../Users/repositories/IUsersRepository';
 import { IProjectsRepository } from '../repositories/IProjectsRepository';
 
 interface IRequest {
@@ -11,17 +10,21 @@ interface IRequest {
 export class FindProjectByIdService {
   constructor(
     @inject('ProjectsRepository')
-    private projectsRepository: IProjectsRepository
+    private projectsRepository: IProjectsRepository,
+
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository
   ) { }
 
 
-  async execute({ id }: IRequest): Promise<Project> {
+  async execute({ id }: IRequest): Promise<any> {
     const project = await this.projectsRepository.findById(id)
 
-    if (!project) {
-      throw new AppError('Projeto não encontrado', 400);
-    }
+    const author = await this.usersRepository.findById(project.authorId);
 
-    return project;
+    return {
+      project,
+      author
+    }
   }
 }
