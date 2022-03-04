@@ -1,17 +1,20 @@
 import { StorageProviderInMemory } from '../../../shared/container/StorageProvider/in-memory/StorageProviderInMemory';
 import AppError from '../../../utils/AppError';
+import { UsersRepositoryInMemory } from '../../Users/repositories/in-memory/UsersRepositoryInMemory';
 import { NewsRepositoryInMemory } from '../repositories/in-memory/NewsRepositoryInMemory';
 import { CreateNewsService } from '../services/CreateNewsService';
 import { FindNewsByIdService } from '../services/FindNewsByIdService';
 
 let createNewsService: CreateNewsService;
 let newsRepositoryInMemory: NewsRepositoryInMemory;
+let usersRepositoryInMemory: UsersRepositoryInMemory;
 let findNewsByIdService: FindNewsByIdService;
 let storageProviderInMemory: StorageProviderInMemory;
 
 describe('Find news by id', () => {
   beforeEach(() => {
     newsRepositoryInMemory = new NewsRepositoryInMemory();
+    usersRepositoryInMemory = new UsersRepositoryInMemory();
     storageProviderInMemory = new StorageProviderInMemory();
 
     createNewsService = new CreateNewsService(
@@ -20,7 +23,8 @@ describe('Find news by id', () => {
     );
 
     findNewsByIdService = new FindNewsByIdService(
-      newsRepositoryInMemory
+      newsRepositoryInMemory,
+      usersRepositoryInMemory
     );
   });
 
@@ -43,11 +47,5 @@ describe('Find news by id', () => {
     const foundNews = await findNewsByIdService.execute({ id: createdNews.id })
 
     expect(foundNews).toHaveProperty('id', createdNews.id);
-  });
-
-  it('should throw an error if the news is not found', async () => {
-    await expect(
-      findNewsByIdService.execute({ id: 'fake-id' })
-    ).rejects.toBeInstanceOf(AppError);
   });
 });

@@ -36,10 +36,4 @@ describe('Find user by email', () => {
     expect(foundUser).toHaveProperty('name', createdUser.name);
     expect(foundUser).toHaveProperty('email', createdUser.email);
   });
-
-  it('should throw an error if the user is not found', async () => {
-    await expect(
-      findUserByEmailService.execute({ email: 'fake-email' })
-    ).rejects.toBeInstanceOf(AppError);
-  });
 });

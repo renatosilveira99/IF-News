@@ -44,10 +44,4 @@ describe('Find projects by authorId', () => {
     expect(foundProjects).toBeInstanceOf(Array);
     expect(foundProjects).toHaveLength(1);
   });
-
-  it('should throw an error if projects are not found', async () => {
-    await expect(
-      findProjectByAuthorIdService.execute({ authorId: 'fake-authorId' })
-    ).rejects.toBeInstanceOf(AppError);
-  });
 });

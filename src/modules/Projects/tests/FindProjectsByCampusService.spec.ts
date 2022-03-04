@@ -44,10 +44,4 @@ describe('Find projects by campus', () => {
     expect(foundProjects).toBeInstanceOf(Array);
     expect(foundProjects).toHaveLength(1);
   });
-
-  it('should throw an error if projects are not found', async () => {
-    await expect(
-      findProjectsByCampusService.execute({ campus: 'fake-campus' })
-    ).rejects.toBeInstanceOf(AppError);
-  });
 });

@@ -46,10 +46,4 @@ describe('Find news by authorId', () => {
     expect(foundNews).toBeInstanceOf(Array);
     expect(foundNews).toHaveLength(1);
   });
-
-  it('should throw an error if news are not found', async () => {
-    await expect(
-      findNewsByAuthorIdService.execute({ authorId: 'fake-authorId' })
-    ).rejects.toBeInstanceOf(AppError);
-  });
 });
