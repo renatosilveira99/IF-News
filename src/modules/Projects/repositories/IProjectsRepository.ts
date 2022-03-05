@@ -11,6 +11,7 @@ interface ICreateProjectDTO {
   coverImage: string;
   views: number;
   likes: number;
+  images: string;
 }
 
 interface IUpdateProjectDTO {
@@ -37,7 +38,7 @@ interface ImageFile {
 }
 
 interface IProjectsRepository {
-  create({ title, description, status, extraLink, campus, authorId, coverImage, views, likes }: ICreateProjectDTO): Promise<Project>;
+  create({ title, description, status, extraLink, campus, authorId, coverImage, views, likes, images }: ICreateProjectDTO): Promise<Project>;
   findAll(): Promise<Project[]>;
   findById(id: string): Promise<Project>;
   findByAuthorId(authorId: string): Promise<Project[]>;

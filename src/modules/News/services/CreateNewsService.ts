@@ -14,6 +14,7 @@ interface IRequest {
   coverImage: string;
   views: number;
   likes: number;
+  images: string;
 }
 
 @injectable()
@@ -40,7 +41,8 @@ export class CreateNewsService {
       extraLink,
       coverImage: imageUrl,
       views,
-      likes
+      likes,
+      images: '[]',
     });
 
     return newNews;

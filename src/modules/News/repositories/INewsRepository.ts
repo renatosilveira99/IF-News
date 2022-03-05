@@ -12,6 +12,7 @@ interface ICreateNewsDTO {
   coverImage: string;
   views: number;
   likes: number;
+  images: string;
 }
 
 interface IUpdateNewsDTO {
@@ -39,7 +40,7 @@ interface ImageFile {
 }
 
 interface INewsRepository {
-  create({ title, subtitle, description, status, extraLink, campus, authorId, coverImage, views, likes }: ICreateNewsDTO): Promise<News>;
+  create({ title, subtitle, description, status, extraLink, campus, authorId, coverImage, views, likes, images }: ICreateNewsDTO): Promise<News>;
   findAll(): Promise<News[]>;
   findById(id: string): Promise<News>;
   findByAuthorId(authorId: string): Promise<News[]>;
