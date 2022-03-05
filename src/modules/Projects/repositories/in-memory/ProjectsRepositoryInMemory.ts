@@ -73,21 +73,29 @@ export class ProjectsRepositoryInMemory implements IProjectsRepository {
     this.projects.splice(findIndex, 1);
   }
 
-  async incrementLikes(id: string): Promise<void> {
+  async incrementLikes(id: string): Promise<Project> {
     const project = this.projects.find(project => project.id === id);
 
     project.likes += 1;
+
+    return project;
   }
 
-  async decrementLikes(id: string): Promise<void> {
+  async decrementLikes(id: string): Promise<Project> {
     const project = this.projects.find(project => project.id === id);
 
     project.likes -= 1;
+
+
+    return project;
   }
 
-  async incrementViews(id: string): Promise<void> {
+  async incrementViews(id: string): Promise<Project> {
     const project = this.projects.find(project => project.id === id);
 
     project.views += 1;
+
+
+    return project;
   }
 }
