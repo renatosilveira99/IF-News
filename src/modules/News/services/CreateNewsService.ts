@@ -14,7 +14,6 @@ interface IRequest {
   coverImage: string;
   views: number;
   likes: number;
-  images: string;
 }
 
 @injectable()
