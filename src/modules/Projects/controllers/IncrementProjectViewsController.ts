@@ -10,7 +10,7 @@ export class IncrementProjectViewsController {
 
     const incrementProjectViewsService = container.resolve(IncrementProjectViewsService);
 
-    const updatedProject = await incrementProjectViewsService.execute(id);
+    const updatedProject = await incrementProjectViewsService.execute({ id });
 
     return response.status(200).json(plainToInstance(Project, updatedProject))
   }
