@@ -13,7 +13,7 @@ export class NewsRepositoryInMemory implements INewsRepository {
     return this.news;
   }
 
-  async update({ id, title, subtitle, description, status, extraLink, campus, authorId }: IUpdateNewsDTO): Promise<News> {
+  async update({ id, title, subtitle, description, status, extraLink, campus, authorId, images }: IUpdateNewsDTO): Promise<News> {
     let newsToUpdateIndex = this.news.findIndex(foundNews => foundNews.id === id);
 
     this.news[newsToUpdateIndex].title = title;
@@ -23,6 +23,7 @@ export class NewsRepositoryInMemory implements INewsRepository {
     this.news[newsToUpdateIndex].extraLink = extraLink;
     this.news[newsToUpdateIndex].campus = campus;
     this.news[newsToUpdateIndex].authorId = authorId;
+    this.news[newsToUpdateIndex].images = images;
 
     return this.news[newsToUpdateIndex];
   }
