@@ -43,7 +43,7 @@ export class UpdateProjectImagesService {
 
     const updatedProject = await this.projectsRepository.update({
       ...project,
-      images: imageUrls
+      images: JSON.stringify(imageUrls),
     });
 
     updatedProject.images = JSON.stringify(imageUrls);
