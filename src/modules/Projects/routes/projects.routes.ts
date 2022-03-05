@@ -38,7 +38,7 @@ projectsRoutes.post('/create', upload.single('image'), createProjectController.h
 
 projectsRoutes.post('/likes/increment', incrementProjectLikesController.handle);
 projectsRoutes.post('/likes/decrement', decrementProjectLikesController.handle);
-projectsRoutes.post('/views/decrement', incrementProjectViewsController.handle);
+projectsRoutes.post('/views/increment', incrementProjectViewsController.handle);
 
 projectsRoutes.get('/find_all', findAllProjectsController.handle);
 projectsRoutes.get('/find_by_id/:id', findProjectByIdController.handle);
