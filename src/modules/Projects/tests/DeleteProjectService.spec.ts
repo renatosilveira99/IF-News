@@ -43,6 +43,7 @@ describe('Delete project', () => {
       coverImage: 'fake-coverImage',
       likes: 0,
       views: 0,
+      images: '[]',
     }
 
     images = [{

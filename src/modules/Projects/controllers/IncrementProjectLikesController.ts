@@ -6,11 +6,11 @@ import { Project } from '../entities/Project';
 
 export class IncrementProjectLikesController {
   async handle(request: Request, response: Response) {
-    const { id } = request.body;
+    const { id, userId } = request.body;
 
     const incrementProjectLikesService = container.resolve(IncrementProjectLikesService);
 
-    const updatedProject = await incrementProjectLikesService.execute({ id });
+    const updatedProject = await incrementProjectLikesService.execute({ id, userId });
 
     return response.status(200).json(plainToInstance(Project, updatedProject))
   }

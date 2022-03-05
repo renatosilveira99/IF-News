@@ -33,6 +33,7 @@ describe('Find all projects', () => {
       coverImage: 'fake-coverImage',
       likes: 0,
       views: 0,
+      images: '[]',
     }
 
     const project2 = {
@@ -45,6 +46,7 @@ describe('Find all projects', () => {
       coverImage: 'fake-coverImage',
       likes: 0,
       views: 0,
+      images: '[]',
     }
 
     await createProjectService.execute(project1)

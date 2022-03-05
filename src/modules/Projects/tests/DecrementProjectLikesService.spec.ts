@@ -35,6 +35,7 @@ describe('Decrement project likes', () => {
       coverImage: 'fake-coverImage',
       likes: 0,
       views: 0,
+      images: '[]',
     }
 
     const { id } = await createProjectService.execute(project);
@@ -43,12 +44,12 @@ describe('Decrement project likes', () => {
       id
     );
 
-    await decrementProjectLikesService.execute({ id: projectCreated.id });
+    await decrementProjectLikesService.execute({ id: projectCreated.id, userId: 'fake-userId' });
 
     expect(projectCreated).toHaveProperty('likes', -1);
   });
 
   it('should not be able to decrement a project likes if the project does not exists', async () => {
-    await expect(decrementProjectLikesService.execute({ id: 'fake-id' })).rejects.toBeInstanceOf(AppError);
+    await expect(decrementProjectLikesService.execute({ id: 'fake-id', userId: 'fake-userId' })).rejects.toBeInstanceOf(AppError);
   })
 });

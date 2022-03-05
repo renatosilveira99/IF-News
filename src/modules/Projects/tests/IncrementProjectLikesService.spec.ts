@@ -35,6 +35,7 @@ describe('Increment project likes', () => {
       coverImage: 'fake-coverImage',
       likes: 0,
       views: 0,
+      images: '[]',
     }
 
     const { id } = await createProjectService.execute(project);
@@ -43,14 +44,14 @@ describe('Increment project likes', () => {
       id
     );
 
-    await incrementProjectLikesService.execute({ id: projectCreated.id });
+    await incrementProjectLikesService.execute({ id: projectCreated.id, userId: 'fake-userId' });
 
     expect(projectCreated).toHaveProperty('likes', 1);
   });
 
   it('should not be able to increment a project likes if the project does not exist', async () => {
     await expect(
-      incrementProjectLikesService.execute({ id: 'invalid-id' })
+      incrementProjectLikesService.execute({ id: 'invalid-id', userId: 'fake-userId' })
     ).rejects.toBeInstanceOf(AppError);
   })
 });

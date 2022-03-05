@@ -38,6 +38,7 @@ describe('Update News Images', () => {
       coverImage: 'fake-coverImage',
       likes: 0,
       views: 0,
+      images: '[]',
     }
 
     images = [{

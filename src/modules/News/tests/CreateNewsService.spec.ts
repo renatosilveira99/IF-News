@@ -28,6 +28,7 @@ describe('Create news', () => {
       coverImage: 'fake-coverImage',
       likes: 0,
       views: 0,
+      images: '[]',
     }
 
     const { id } = await createNewsService.execute(news);

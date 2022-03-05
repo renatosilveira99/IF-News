@@ -40,6 +40,7 @@ describe('Find news by id', () => {
       coverImage: 'fake-coverImage',
       likes: 0,
       views: 0,
+      images: '[]',
     }
 
     const createdNews = await createNewsService.execute(news)

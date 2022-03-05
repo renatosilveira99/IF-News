@@ -36,6 +36,7 @@ describe('Find all news', () => {
       coverImage: 'fake-coverImage',
       likes: 0,
       views: 0,
+      images: '[]',
     }
 
     const news2 = {
@@ -49,6 +50,7 @@ describe('Find all news', () => {
       coverImage: 'fake-coverImage',
       likes: 0,
       views: 0,
+      images: '[]',
     }
 
     await createNewsService.execute(news1)

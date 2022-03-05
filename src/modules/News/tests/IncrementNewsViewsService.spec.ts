@@ -37,6 +37,7 @@ describe('Increment news views', () => {
       coverImage: 'fake-coverImage',
       likes: 0,
       views: 0,
+      images: '[]',
     }
 
     const { id } = await createNewsService.execute(news);

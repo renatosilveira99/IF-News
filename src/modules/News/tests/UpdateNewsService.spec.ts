@@ -36,6 +36,7 @@ describe('Update News', () => {
       coverImage: 'fake-coverImage',
       likes: 0,
       views: 0,
+      images: '[]',
     }
   });
 

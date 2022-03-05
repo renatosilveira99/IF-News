@@ -1,6 +1,4 @@
 import { inject, injectable } from 'tsyringe';
-import AppError from "../../../utils/AppError";
-import { IUsersRepository } from '../../Users/repositories/IUsersRepository';
 import { News } from '../entities/News';
 import { INewsRepository } from '../repositories/INewsRepository';
 
@@ -18,17 +16,6 @@ export class IncrementNewsLikesService {
 
   async execute({ id, userId }: IRequest): Promise<News> {
     const likedNews = await this.newsRepository.incrementLikes(id);
-
-    if (
-      likedNews.images === ''
-      || likedNews.images === undefined
-      || likedNews.images === null
-    ) {
-      await this.newsRepository.update({
-        ...likedNews,
-        images: '[]',
-      })
-    }
 
     const usersLikeArray = JSON.parse(likedNews.images);
 

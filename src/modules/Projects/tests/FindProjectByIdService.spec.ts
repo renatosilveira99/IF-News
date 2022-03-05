@@ -38,6 +38,7 @@ describe('Find project by id', () => {
       coverImage: 'fake-coverImage',
       likes: 0,
       views: 0,
+      images: '[]',
     }
 
     const createdProject = await createProjectService.execute(project)

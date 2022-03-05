@@ -37,6 +37,7 @@ describe('Find news by authorId', () => {
       coverImage: 'fake-coverImage',
       likes: 0,
       views: 0,
+      images: '[]',
     }
 
     const createdNews = await createNewsService.execute(news)

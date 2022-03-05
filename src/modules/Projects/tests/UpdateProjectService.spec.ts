@@ -35,6 +35,7 @@ describe('Update Project', () => {
       coverImage: 'fake-coverImage',
       likes: 0,
       views: 0,
+      images: '[]',
     }
   });
 
