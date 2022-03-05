@@ -45,9 +45,9 @@ interface IProjectsRepository {
   update({ id, title, description, status, extraLink, campus, authorId, coverImage, images }: IUpdateProjectDTO): Promise<Project>;
   save(project: Project): Promise<Project>;
   delete(id: string): Promise<void>;
-  incrementLikes(id: string): Promise<void>;
-  incrementViews(id: string): Promise<void>;
-  decrementLikes(id: string): Promise<void>;
+  incrementLikes(id: string): Promise<Project>;
+  incrementViews(id: string): Promise<Project>;
+  decrementLikes(id: string): Promise<Project>;
 }
 
 export { IProjectsRepository, ICreateProjectDTO, IUpdateProjectDTO, ImageFile };

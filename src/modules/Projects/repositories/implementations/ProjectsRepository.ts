@@ -95,28 +95,34 @@ export class ProjectsRepository implements IProjectsRepository {
     await this.repository.delete(id);
   }
 
-  async incrementLikes(id: string): Promise<void> {
+  async incrementLikes(id: string): Promise<Project> {
     const project = await this.repository.findOne({ id });
 
-    project.likes += 1;
+    project.likes = Number(project.likes) + 1;
 
     await this.repository.save(project);
+
+    return project;
   }
 
-  async incrementViews(id: string): Promise<void> {
+  async incrementViews(id: string): Promise<Project> {
     const project = await this.repository.findOne({ id });
 
-    project.views += 1;
+    project.views = Number(project.views) + 1;
 
     await this.repository.save(project);
+
+    return project;
   }
 
-  async decrementLikes(id: string): Promise<void> {
+  async decrementLikes(id: string): Promise<Project> {
     const project = await this.repository.findOne({ id });
 
-    project.likes -= 1;
+    project.likes = Number(project.likes) + 1;
 
     await this.repository.save(project);
+
+    return project;
   }
 }
 
