@@ -41,9 +41,9 @@ describe('Increment news likes', () => {
 
     const { id } = await createNewsService.execute(news);
 
-    await incrementNewsLikesService.execute({ id });
+    await incrementNewsLikesService.execute({ id, userId: 'fake-userId' });
 
-    await incrementNewsLikesService.execute({ id });
+    await incrementNewsLikesService.execute({ id, userId: 'fake-userId' });
 
     const newsCreated = await newsRepositoryInMemory.findById(
       id
@@ -54,7 +54,7 @@ describe('Increment news likes', () => {
 
   it('should not be able to increment news likes if the news does not exist', async () => {
     await expect(
-      incrementNewsLikesService.execute({ id: 'invalid-id' })
+      incrementNewsLikesService.execute({ id: 'invalid-id', userId: 'fake-userId' })
     ).rejects.toBeInstanceOf(AppError);
   })
 });

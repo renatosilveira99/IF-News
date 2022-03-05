@@ -43,7 +43,7 @@ export class UpdateNewsImagesService {
 
     const updatedNews = await this.newsRepository.update({
       ...news,
-      images: imageUrls
+      images: JSON.stringify(imageUrls),
     });
 
     updatedNews.images = JSON.stringify(imageUrls);
