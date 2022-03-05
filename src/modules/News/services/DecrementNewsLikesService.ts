@@ -1,10 +1,10 @@
 import { inject, injectable } from 'tsyringe';
-import AppError from "../../../utils/AppError";
 import { News } from '../entities/News';
 import { INewsRepository } from '../repositories/INewsRepository';
 
 interface IRequest {
   id: string;
+  userId: string;
 }
 
 @injectable()
@@ -14,8 +14,19 @@ export class DecrementNewsLikesService {
     private newsRepository: INewsRepository
   ) { }
 
-  async execute({ id }: IRequest): Promise<News> {
-    const updatedNews = await this.newsRepository.decrementLikes(id);
+  async execute({ id, userId }: IRequest): Promise<News> {
+    const likedNews = await this.newsRepository.decrementLikes(id);
+
+    const usersLikeArray = JSON.parse(likedNews.images);
+
+    if (usersLikeArray.includes(userId)) {
+      usersLikeArray.splice(usersLikeArray.indexOf(userId), 1);
+    }
+
+    const updatedNews = await this.newsRepository.update({
+      ...likedNews,
+      images: JSON.stringify(usersLikeArray),
+    })
 
     return updatedNews;
   }

@@ -44,12 +44,12 @@ describe('Decrement news likes', () => {
       id
     );
 
-    await decrementNewsLikesService.execute({ id: newsCreated.id });
+    await decrementNewsLikesService.execute({ id: newsCreated.id, userId: 'fake-userId' });
 
     expect(newsCreated).toHaveProperty('likes', -1);
   });
 
   it('should not be able to decrement news likes if the news does not exists', async () => {
-    await expect(decrementNewsLikesService.execute({ id: 'fake-id' })).rejects.toBeInstanceOf(AppError);
+    await expect(decrementNewsLikesService.execute({ id: 'fake-id', userId: 'fake-userId' })).rejects.toBeInstanceOf(AppError);
   })
 });
