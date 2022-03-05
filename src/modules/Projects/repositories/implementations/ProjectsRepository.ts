@@ -122,7 +122,7 @@ export class ProjectsRepository implements IProjectsRepository {
   async decrementLikes(id: string): Promise<Project> {
     const project = await this.repository.findOne({ id });
 
-    project.likes = Number(project.likes) + 1;
+    project.likes = Number(project.likes) - 1;
 
     await this.repository.save(project);
 

@@ -19,7 +19,7 @@ export class DecrementNewsLikesService {
 
     let usersLikeArray = JSON.parse(likedNews.images);
 
-    if (usersLikeArray.includes(userId)) {
+    if (usersLikeArray.find((likes: any) => likes.userId === userId)) {
       usersLikeArray = usersLikeArray.splice(usersLikeArray.indexOf(userId), 1);
     }
 
