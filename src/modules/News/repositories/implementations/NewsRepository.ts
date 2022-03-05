@@ -30,7 +30,11 @@ export class NewsRepository implements INewsRepository {
   }
 
   async findAll(): Promise<News[]> {
-    const news = await this.repository.find();
+    const news = await this.repository.find({
+      order: {
+        createdAt: 'DESC'
+      }
+    });
 
     return news;
   }

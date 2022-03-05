@@ -30,7 +30,11 @@ export class ProjectsRepository implements IProjectsRepository {
   }
 
   async findAll(): Promise<Project[]> {
-    const projects = await this.repository.find();
+    const projects = await this.repository.find({
+      order: {
+        createdAt: 'DESC'
+      }
+    });
 
     return projects;
   }
