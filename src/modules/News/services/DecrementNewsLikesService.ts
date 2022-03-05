@@ -17,10 +17,10 @@ export class DecrementNewsLikesService {
   async execute({ id, userId }: IRequest): Promise<News> {
     const likedNews = await this.newsRepository.decrementLikes(id);
 
-    const usersLikeArray = JSON.parse(likedNews.images);
+    let usersLikeArray = JSON.parse(likedNews.images);
 
     if (usersLikeArray.includes(userId)) {
-      usersLikeArray.splice(usersLikeArray.indexOf(userId), 1);
+      usersLikeArray = usersLikeArray.splice(usersLikeArray.indexOf(userId), 1);
     }
 
     const updatedNews = await this.newsRepository.update({
