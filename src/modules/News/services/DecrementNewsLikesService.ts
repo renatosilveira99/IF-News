@@ -15,7 +15,7 @@ export class DecrementNewsLikesService {
   ) { }
 
   async execute({ id }: IRequest): Promise<News> {
-    const updatedNews = this.newsRepository.decrementLikes(id);
+    const updatedNews = await this.newsRepository.decrementLikes(id);
 
     return updatedNews;
   }

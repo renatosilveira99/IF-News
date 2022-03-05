@@ -24,7 +24,7 @@ interface IUpdateNewsDTO {
   campus: string;
   authorId: string;
   coverImage: string;
-  images?: string[] | string;
+  images?: string;
 }
 
 interface ImageFile {

@@ -15,7 +15,7 @@ export class IncrementNewsViewsService {
   ) { }
 
   async execute({ id }: IRequest): Promise<News> {
-    const updatedNews = this.newsRepository.incrementViews(id);
+    const updatedNews = await this.newsRepository.incrementViews(id);
 
     return updatedNews;
   }

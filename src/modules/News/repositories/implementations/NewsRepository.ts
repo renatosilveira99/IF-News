@@ -43,7 +43,8 @@ export class NewsRepository implements INewsRepository {
     campus,
     status,
     extraLink,
-    subtitle
+    subtitle,
+    images
   }: IUpdateNewsDTO): Promise<News> {
     const newsToUpdate = await this.repository.findOne({ id });
 
@@ -54,6 +55,7 @@ export class NewsRepository implements INewsRepository {
     newsToUpdate.campus = campus;
     newsToUpdate.status = status;
     newsToUpdate.extraLink = extraLink;
+    newsToUpdate.images = images;
 
     await this.repository.save(newsToUpdate);
 
