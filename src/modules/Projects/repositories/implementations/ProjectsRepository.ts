@@ -47,6 +47,7 @@ export class ProjectsRepository implements IProjectsRepository {
     campus,
     status,
     extraLink,
+    images,
   }: IUpdateProjectDTO): Promise<Project> {
     const projecToUpdate = await this.repository.findOne({ id });
 
@@ -56,6 +57,7 @@ export class ProjectsRepository implements IProjectsRepository {
     projecToUpdate.campus = campus;
     projecToUpdate.status = status;
     projecToUpdate.extraLink = extraLink;
+    projecToUpdate.images = images;
 
     await this.repository.save(projecToUpdate);
 

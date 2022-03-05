@@ -13,7 +13,7 @@ export class ProjectsRepositoryInMemory implements IProjectsRepository {
     return this.projects;
   }
 
-  async update({ id, title, description, status, extraLink, campus, authorId }: IUpdateProjectDTO): Promise<Project> {
+  async update({ id, title, description, status, extraLink, campus, authorId, images }: IUpdateProjectDTO): Promise<Project> {
     let projectToUpdateIndex = this.projects.findIndex(foundProject => foundProject.id === id);
 
     this.projects[projectToUpdateIndex].title = title;
@@ -22,6 +22,7 @@ export class ProjectsRepositoryInMemory implements IProjectsRepository {
     this.projects[projectToUpdateIndex].extraLink = extraLink;
     this.projects[projectToUpdateIndex].campus = campus;
     this.projects[projectToUpdateIndex].authorId = authorId;
+    this.projects[projectToUpdateIndex].images = images;
 
     return this.projects[projectToUpdateIndex];
   }
