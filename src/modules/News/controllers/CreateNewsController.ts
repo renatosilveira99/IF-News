@@ -10,7 +10,8 @@ export class CreateNewsController {
     const coverImage = request.file.filename
     const authorId = request.user.id
 
-    console.log(request.file);
+    console.log("REQUEST ++++++++++++++++++++++++++")
+    console.log(request);
 
     const createNewsService = container.resolve(CreateNewsService);
 
