@@ -3,6 +3,7 @@ import { container } from 'tsyringe';
 import { CreateNewsService } from '../services/CreateNewsService';
 import { plainToInstance } from 'class-transformer'
 import { News } from '../entities/News';
+import logger from 'heroku-logger'
 
 export class CreateNewsController {
   async handle(request: Request, response: Response) {
@@ -10,8 +11,8 @@ export class CreateNewsController {
     const coverImage = request.file.filename
     const authorId = request.user.id
 
-    console.log("REQUEST ++++++++++++++++++++++++++")
-    console.log(request);
+    logger.info(JSON.stringify(request.body))
+    logger.info(JSON.stringify(request.file))
 
     const createNewsService = container.resolve(CreateNewsService);
 
