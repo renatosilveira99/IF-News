@@ -36,7 +36,7 @@ app.use(
 
     return response.status(500).json({
       message:
-        `Internal server error - ${error.message} - ${JSON.stringify(request.body)} - ${JSON.stringify(request.file)} - ${JSON.stringify(request)}`,
+        `Internal server error - ${error.message} - ${JSON.stringify(request.body)} - ${JSON.stringify(request.file)}`,
     });
   }
 );
