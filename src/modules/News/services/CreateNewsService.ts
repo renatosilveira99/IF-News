@@ -27,24 +27,10 @@ export class CreateNewsService {
   ) { }
 
 
-  async execute({ authorId, campus, description, status, title, subtitle, extraLink, coverImage, views, likes }: IRequest): Promise<News> {
+  async execute({ authorId, campus, description, status, title, subtitle, extraLink, coverImage, views, likes }: IRequest): Promise<any> {
     const imageUrl = await this.storageProvider.saveFile(coverImage);
 
-    const newNews = this.newsRepository.create({
-      subtitle,
-      authorId,
-      campus,
-      description,
-      status,
-      title,
-      extraLink,
-      coverImage: imageUrl,
-      views,
-      likes,
-      images: '[]',
-    });
-
-    return newNews;
+    return imageUrl;
   }
 }
 
