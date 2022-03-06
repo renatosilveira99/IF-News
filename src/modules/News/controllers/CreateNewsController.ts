@@ -8,7 +8,7 @@ import logger from 'heroku-logger'
 export class CreateNewsController {
   async handle(request: Request, response: Response) {
     const { campus, description, status, title, extraLink, views, likes, subtitle } = request.body
-    const coverImage = request.body.image.uri
+    const coverImage = request.file.filename
     const authorId = request.user.id
 
     logger.info(JSON.stringify(request.body))
