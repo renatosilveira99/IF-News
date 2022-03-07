@@ -27,8 +27,6 @@ export class CreateProjectService {
 
 
   async execute({ authorId, campus, description, status, title, extraLink, coverImage, views, likes }: IRequest): Promise<Project> {
-    const imageUrl = await this.storageProvider.saveFile(coverImage);
-
     const newProject = this.projectsRepository.create({
       authorId,
       campus,
@@ -36,7 +34,7 @@ export class CreateProjectService {
       status,
       title,
       extraLink,
-      coverImage: imageUrl,
+      coverImage,
       views,
       likes,
       images: '[]',

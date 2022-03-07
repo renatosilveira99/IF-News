@@ -6,8 +6,7 @@ import { Project } from '../entities/Project';
 
 export class CreateProjectController {
   async handle(request: Request, response: Response) {
-    const { campus, description, status, title, extraLink, views, likes } = request.body
-    const coverImage = request.file.filename
+    const { coverImage, campus, description, status, title, extraLink, views, likes } = request.body
     const authorId = request.user.id
 
     const createProjectService = container.resolve(CreateProjectService);
