@@ -73,7 +73,8 @@ export class ProjectsRepository implements IProjectsRepository {
     extraLink,
     coverImage,
     views,
-    likes
+    likes,
+    images,
   }: ICreateProjectDTO): Promise<Project> {
     const project = this.repository.create({
       title,
@@ -84,7 +85,8 @@ export class ProjectsRepository implements IProjectsRepository {
       extraLink,
       coverImage,
       views,
-      likes
+      likes,
+      images
     });
 
     await this.repository.save(project);

@@ -76,7 +76,8 @@ export class NewsRepository implements INewsRepository {
     extraLink,
     coverImage,
     views,
-    likes
+    likes,
+    images,
   }: ICreateNewsDTO): Promise<News> {
     const news = this.repository.create({
       title,
@@ -88,7 +89,8 @@ export class NewsRepository implements INewsRepository {
       extraLink,
       coverImage,
       views,
-      likes
+      likes,
+      images
     });
 
     await this.repository.save(news);
